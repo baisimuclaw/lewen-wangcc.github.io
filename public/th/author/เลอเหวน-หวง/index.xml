@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>เลอเหวิน หวัง</title>
+    <link>http://localhost:1314/th/author/%E0%B9%80%E0%B8%A5%E0%B8%AD%E0%B9%80%E0%B8%AB%E0%B8%A7%E0%B8%99-%E0%B8%AB%E0%B8%A7%E0%B8%87/</link>
+      <atom:link href="http://localhost:1314/th/author/%E0%B9%80%E0%B8%A5%E0%B8%AD%E0%B9%80%E0%B8%AB%E0%B8%A7%E0%B8%99-%E0%B8%AB%E0%B8%A7%E0%B8%87/index.xml" rel="self" type="application/rss+xml" />
+    <description>เลอเหวิน หวัง</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>th</language>
+    <image>
+      <url>http://localhost:1314/th/author/%E0%B9%80%E0%B8%A5%E0%B8%AD%E0%B9%80%E0%B8%AB%E0%B8%A7%E0%B8%99-%E0%B8%AB%E0%B8%A7%E0%B8%87/avatar_hu_2f31f696093127d.png</url>
+      <title>เลอเหวิน หวัง</title>
+      <link>http://localhost:1314/th/author/%E0%B9%80%E0%B8%A5%E0%B8%AD%E0%B9%80%E0%B8%AB%E0%B8%A7%E0%B8%99-%E0%B8%AB%E0%B8%A7%E0%B8%87/</link>
+    </image>
+    
+  </channel>
+</rss>

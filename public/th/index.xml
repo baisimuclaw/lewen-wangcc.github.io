@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>เกี่ยวกับฉัน | เลอเหวิน หวัง</title>
+    <link>http://localhost:1314/th/</link>
+      <atom:link href="http://localhost:1314/th/index.xml" rel="self" type="application/rss+xml" />
+    <description>เกี่ยวกับฉัน</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>th</language><lastBuildDate>Mon, 30 Dec 2024 10:00:00 +0800</lastBuildDate>
+    <image>
+      <url>http://localhost:1314/media/icon_hu_645fa481986063ef.png</url>
+      <title>เกี่ยวกับฉัน</title>
+      <link>http://localhost:1314/th/</link>
+    </image>
+    
+    <item>
+      <title>แกลเลอรี่</title>
+      <link>http://localhost:1314/th/gallery/</link>
+      <pubDate>Mon, 30 Dec 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1314/th/gallery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ประสบการณ์</title>
+      <link>http://localhost:1314/th/experience/</link>
+      <pubDate>Mon, 30 Dec 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1314/th/experience/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>งานตีพิมพ์</title>
+      <link>http://localhost:1314/th/publication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1314/th/publication/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -10,7 +10,7 @@ last_name: 王
 superuser: true
 
 # Role/position/tagline
-role: 即将入学的博士生
+role: 博士生（ITS项目）
 
 status:
   icon: 🏸
@@ -101,7 +101,7 @@ skills:
 
 ---
 
-你好，欢迎来到我的主页！我是[香港浸会大学化学系](https://chem.hkbu.edu.hk/)即将入学的博士生，我的博士导师是[汪君教授](https://chem.hkbu.edu.hk/junwang)。同时，我是[香港中文大学化学系](https://chem.cuhk.edu.hk/)的[章兴龙教授课题组](https://xinglong-zhang.github.io/)的访问学生。我未来的研究方向将聚焦于将机器学习应用于有机磷化合物开发。
+你好，欢迎来到我的主页！我是[香港浸会大学化学系](https://chem.hkbu.edu.hk/)的博士生（博一），我的博士导师是[汪君教授](https://chem.hkbu.edu.hk/junwang)。同时，我是[香港中文大学化学系](https://chem.cuhk.edu.hk/)的[章兴龙教授课题组](https://xinglong-zhang.github.io/)的访问学生。我未来的研究方向将聚焦于将机器学习应用于有机磷化合物开发。
 
 我于2016年至2020年在[北京化工大学](https://www.buct.edu.cn/)学习并获得高分子材料与工程专业的学士学位，随后于2020年至2022年在[中山大学](https://www.sysu.edu.cn/)完成材料与化工专业的学业并获得硕士学位，师从[周业成教授](https://mse.sysu.edu.cn/teacher/198)。
 

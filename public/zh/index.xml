@@ -2,37 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>关于我 | 王乐文</title>
-    <link>http://localhost:1313/zh/</link>
-      <atom:link href="http://localhost:1313/zh/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:1314/zh/</link>
+      <atom:link href="http://localhost:1314/zh/index.xml" rel="self" type="application/rss+xml" />
     <description>关于我</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>zh-Hans</language><lastBuildDate>Mon, 30 Dec 2024 10:00:00 +0800</lastBuildDate>
     <image>
-      <url>http://localhost:1313/media/icon_hu_645fa481986063ef.png</url>
+      <url>http://localhost:1314/media/icon_hu_645fa481986063ef.png</url>
       <title>关于我</title>
-      <link>http://localhost:1313/zh/</link>
+      <link>http://localhost:1314/zh/</link>
     </image>
     
     <item>
       <title>画廊</title>
-      <link>http://localhost:1313/zh/gallery/</link>
+      <link>http://localhost:1314/zh/gallery/</link>
       <pubDate>Mon, 30 Dec 2024 10:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/zh/gallery/</guid>
+      <guid>http://localhost:1314/zh/gallery/</guid>
       <description></description>
     </item>
     
     <item>
       <title>经历</title>
-      <link>http://localhost:1313/zh/experience/</link>
+      <link>http://localhost:1314/zh/experience/</link>
       <pubDate>Mon, 30 Dec 2024 10:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/zh/experience/</guid>
+      <guid>http://localhost:1314/zh/experience/</guid>
       <description></description>
     </item>
     
     <item>
       <title>发表论文</title>
-      <link>http://localhost:1313/zh/publication/</link>
+      <link>http://localhost:1314/zh/publication/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/zh/publication/</guid>
+      <guid>http://localhost:1314/zh/publication/</guid>
       <description></description>
     </item>
     

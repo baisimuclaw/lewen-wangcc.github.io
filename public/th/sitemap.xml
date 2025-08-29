@@ -2,9 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1314/</loc>
+    <loc>http://localhost:1314/th/</loc>
     <lastmod>2024-12-30T10:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="http://localhost:1314/"
+                />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
@@ -15,34 +20,15 @@
                 hreflang="th"
                 href="http://localhost:1314/th/"
                 />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="http://localhost:1314/"
-                />
   </url><url>
-    <loc>http://localhost:1314/experience/</loc>
+    <loc>http://localhost:1314/th/gallery/</loc>
     <lastmod>2024-12-30T10:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
-                hreflang="zh-Hans"
-                href="http://localhost:1314/zh/experience/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="th"
-                href="http://localhost:1314/th/experience/"
-                />
-    <xhtml:link
-                rel="alternate"
                 hreflang="en-us"
-                href="http://localhost:1314/experience/"
+                href="http://localhost:1314/gallery/"
                 />
-  </url><url>
-    <loc>http://localhost:1314/gallery/</loc>
-    <lastmod>2024-12-30T10:00:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
@@ -53,14 +39,33 @@
                 hreflang="th"
                 href="http://localhost:1314/th/gallery/"
                 />
+  </url><url>
+    <loc>http://localhost:1314/th/experience/</loc>
+    <lastmod>2024-12-30T10:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="http://localhost:1314/gallery/"
+                href="http://localhost:1314/experience/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-Hans"
+                href="http://localhost:1314/zh/experience/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="th"
+                href="http://localhost:1314/th/experience/"
                 />
   </url><url>
-    <loc>http://localhost:1314/publication/</loc>
+    <loc>http://localhost:1314/th/publication/</loc>
     <changefreq>weekly</changefreq>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="http://localhost:1314/publication/"
+                />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
@@ -71,10 +76,8 @@
                 hreflang="th"
                 href="http://localhost:1314/th/publication/"
                 />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="http://localhost:1314/publication/"
-                />
+  </url><url>
+    <loc>http://localhost:1314/th/author/%E0%B9%80%E0%B8%A5%E0%B8%AD%E0%B9%80%E0%B8%AB%E0%B8%A7%E0%B8%99-%E0%B8%AB%E0%B8%A7%E0%B8%87/</loc>
+    <changefreq>weekly</changefreq>
   </url>
 </urlset>
