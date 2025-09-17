@@ -27,7 +27,7 @@ zh:
         show_theme_chooser: true
         logo:
           text: "王乐文"
-
+  menu:
     main:
       - name: 关于我
         url: /
@@ -43,33 +43,33 @@ zh:
         weight: 55
 
 # Thai language configuration
-th:
-  languageCode: th
-  languageName: ไทย
-  weight: 3
-  contentDir: content/th
-  title: เลอเหวิน หวัง
-  params:
-    header:
-      navbar:
-        enable: true
-        blox: "navbar"
-        fixed_to_top: true
-        show_search: true
-        show_theme_chooser: true
-        logo:
-          text: "เลอเหวิน หวัง"
-  menu:
-    main:
-      - name: เกี่ยวกับฉัน
-        url: /
-        weight: 10
-      - name: งานตีพิมพ์
-        url: publication/
-        weight: 25
-      - name: ประสบการณ์
-        url: experience/
-        weight: 40
-      - name: แกลเลอรี่
-        url: gallery/
-        weight: 55
+# th:
+#   languageCode: th
+#   languageName: ไทย
+#   weight: 3
+#   contentDir: content/th
+#   title: เลอเหวิน หวัง
+#   params:
+#     header:
+#       navbar:
+#         enable: true
+#         blox: "navbar"
+#         fixed_to_top: true
+#         show_search: true
+#         show_theme_chooser: true
+#         logo:
+#           text: "เลอเหวิน หวัง"
+  # menu:
+  #   main:
+  #     - name: เกี่ยวกับฉัน
+  #       url: /
+  #       weight: 10
+  #     - name: งานตีพิมพ์
+  #       url: publication/
+  #       weight: 25
+  #     - name: ประสบการณ์
+  #       url: experience/
+  #       weight: 40
+  #     - name: แกลเลอรี่
+  #       url: gallery/
+  #       weight: 55
