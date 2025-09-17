@@ -15,11 +15,4 @@
     
   </sitemap>
   
-  <sitemap>
-    <loc>http://localhost:1314/th/sitemap.xml</loc>
-    
-      <lastmod>2024-12-30T10:00:00+08:00</lastmod>
-    
-  </sitemap>
-  
 </sitemapindex>

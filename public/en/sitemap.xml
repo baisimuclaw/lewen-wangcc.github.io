@@ -12,11 +12,6 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="th"
-                href="http://localhost:1314/th/"
-                />
-    <xhtml:link
-                rel="alternate"
                 hreflang="en-us"
                 href="http://localhost:1314/"
                 />
@@ -28,11 +23,6 @@
                 rel="alternate"
                 hreflang="zh-Hans"
                 href="http://localhost:1314/zh/experience/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="th"
-                href="http://localhost:1314/th/experience/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -50,11 +40,6 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="th"
-                href="http://localhost:1314/th/gallery/"
-                />
-    <xhtml:link
-                rel="alternate"
                 hreflang="en-us"
                 href="http://localhost:1314/gallery/"
                 />
@@ -65,11 +50,6 @@
                 rel="alternate"
                 hreflang="zh-Hans"
                 href="http://localhost:1314/zh/publication/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="th"
-                href="http://localhost:1314/th/publication/"
                 />
     <xhtml:link
                 rel="alternate"
