@@ -16,4 +16,7 @@ main:
   - name: Gallery
     url: gallery/
     weight: 40
+  - name: Blog
+    url: blog/
+    weight: 50
 

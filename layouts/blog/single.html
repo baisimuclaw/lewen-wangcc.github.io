@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <article class="col-lg-8">
+      <header class="mb-4">
+        <div class="small text-muted mb-2">{{ .Date.Format "Jan 2, 2006" }}</div>
+        <h1 class="mb-3">{{ .Title }}</h1>
+        {{ with .Params.description }}<p class="text-muted mb-0">{{ . }}</p>{{ end }}
+      </header>
+      <div class="article-style">
+        {{ .Content }}
+      </div>
+      <div class="mt-5">
+        <a class="btn btn-outline-primary btn-sm" href="{{ .CurrentSection.RelPermalink }}">{{ if eq .Lang "zh" }}返回博客列表{{ else }}Back to Blog{{ end }}</a>
+      </div>
+    </article>
+  </div>
+</div>
+{{ end }}
