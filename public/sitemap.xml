@@ -1,1 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>https://lewen-wangcc.github.io/en/sitemap.xml</loc><lastmod>2026-03-12T04:50:00+08:00</lastmod></sitemap><sitemap><loc>https://lewen-wangcc.github.io/zh/sitemap.xml</loc><lastmod>2026-03-12T04:50:00+08:00</lastmod></sitemap></sitemapindex>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <sitemap>
+    <loc>http://192.168.2.179:1313/en/sitemap.xml</loc>
+    
+      <lastmod>2026-03-12T04:50:00+08:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>http://192.168.2.179:1313/zh/sitemap.xml</loc>
+    
+      <lastmod>2026-03-12T04:50:00+08:00</lastmod>
+    
+  </sitemap>
+  
+</sitemapindex>

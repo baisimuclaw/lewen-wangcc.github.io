@@ -243,9 +243,34 @@
     color: #1d4ed8;
     transform: translateY(-1px);
   }
+  .blog-single-content .code-copy-btn[data-copy-state='copied'] {
+    pointer-events: none;
+    transform: none;
+    background: #dbeafe;
+    border-color: rgba(96, 165, 250, 0.86);
+    color: #1d4ed8;
+  }
+  .blog-single-content .code-copy-btn[data-copy-state='copied']:hover {
+    transform: none;
+    background: #dbeafe;
+    border-color: rgba(96, 165, 250, 0.86);
+    color: #1d4ed8;
+  }
   .blog-single-content .code-copy-btn:focus-visible {
     outline: 2px solid #93c5fd;
     outline-offset: 2px;
+  }
+  .blog-single-content .highlight .copy-code-button,
+  .blog-single-content .highlight .code-copy-button,
+  .blog-single-content .highlight .clipboard-button,
+  .blog-single-content .highlight .highlight-copy-btn,
+  .blog-single-content pre .copy-code-button,
+  .blog-single-content pre .code-copy-button,
+  .blog-single-content pre .clipboard-button,
+  .blog-single-content pre .highlight-copy-btn,
+  .blog-single-content .highlight button:not(.code-copy-btn),
+  .blog-single-content pre button:not(.code-copy-btn) {
+    display: none !important;
   }
   .blog-single-content > pre::-webkit-scrollbar,
   .blog-single-content li > pre::-webkit-scrollbar,
@@ -386,6 +411,19 @@
     background: rgba(37, 99, 235, 0.34);
     color: #eff6ff;
   }
+  .dark .blog-single-content .code-copy-btn[data-copy-state='copied'] {
+    pointer-events: none;
+    transform: none;
+    border-color: rgba(147, 197, 253, 0.9);
+    background: rgba(37, 99, 235, 0.42);
+    color: #eff6ff;
+  }
+  .dark .blog-single-content .code-copy-btn[data-copy-state='copied']:hover {
+    transform: none;
+    border-color: rgba(147, 197, 253, 0.9);
+    background: rgba(37, 99, 235, 0.42);
+    color: #eff6ff;
+  }
   .dark .blog-tag {
     border-color: rgba(125, 170, 255, 0.38);
     background: rgba(37, 99, 235, 0.2);
@@ -430,26 +468,98 @@
 </style>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.blog-single-content .highlight, .blog-single-content pre').forEach(function (block) {
-      var code = block.matches('code') ? block : block.querySelector('code');
-      var lang = '';
-      if (code) {
-        lang = code.getAttribute('data-lang') || '';
-        if (!lang && code.className) {
-          var match = code.className.match(/language-([a-zA-Z0-9_+-]+)/);
-          if (match) lang = match[1];
-        }
+    function detectLang(code) {
+      if (!code) return '';
+      var lang = code.getAttribute('data-lang') || '';
+      if (!lang && code.className) {
+        var match = code.className.match(/language-([a-zA-Z0-9_+-]+)/);
+        if (match) lang = match[1];
       }
-      lang = (lang || 'text').toLowerCase();
-      if (block.classList.contains('highlight')) {
-        block.setAttribute('data-code-lang', lang);
-        var nestedPre = block.querySelector('pre');
-        if (nestedPre) nestedPre.setAttribute('data-code-lang', lang);
-      } else {
-        block.setAttribute('data-code-lang', lang);
+      return (lang || '').toLowerCase();
+    }
+
+    function hasExplicitNoCopy(block, code) {
+      var host = block.classList.contains('highlight') ? block : (block.closest('pre') || block);
+      return (
+        block.classList.contains('no-copy') ||
+        host.classList.contains('no-copy') ||
+        code.classList.contains('no-copy') ||
+        block.getAttribute('data-copy') === 'off' ||
+        host.getAttribute('data-copy') === 'off' ||
+        code.getAttribute('data-copy') === 'off'
+      );
+    }
+
+    function shouldSkipCopyButton(block, code, lang) {
+      if (hasExplicitNoCopy(block, code)) {
+        return true;
       }
 
-      var copyHost = block.classList.contains('highlight') ? block : block.closest('pre') || block;
+      var normalized = (lang || '').toLowerCase();
+      var isPlainOutput = ['text', 'plain', 'plaintext', 'output', 'console'].indexOf(normalized) >= 0;
+      if (!isPlainOutput) return false;
+
+      var cursor = block;
+      for (var i = 0; i < 4 && cursor; i++) {
+        cursor = cursor.previousElementSibling;
+        if (!cursor) break;
+        var marker = (cursor.textContent || '').toLowerCase();
+        if (
+          marker.indexOf('expected example output') >= 0 ||
+          marker.indexOf('system output') >= 0 ||
+          marker.indexOf('预期输出示例') >= 0 ||
+          marker.indexOf('系统输出示例') >= 0
+        ) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function copyWithFallback(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+      }
+      return new Promise(function (resolve, reject) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          var ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+          if (ok) resolve();
+          else reject(new Error('execCommand copy failed'));
+        } catch (e) {
+          document.body.removeChild(ta);
+          reject(e);
+        }
+      });
+    }
+
+    document.querySelectorAll('.blog-single-content .highlight, .blog-single-content pre').forEach(function (block) {
+      var code = block.querySelector('code');
+      if (!code) return;
+
+      var lang = detectLang(code) || 'text';
+      block.setAttribute('data-code-lang', lang);
+      if (block.classList.contains('highlight')) {
+        var nestedPre = block.querySelector('pre');
+        if (nestedPre) nestedPre.setAttribute('data-code-lang', lang);
+      }
+
+      var hasLanguageHint = !!detectLang(code);
+      if (!hasLanguageHint) return;
+      if (shouldSkipCopyButton(block, code, lang)) return;
+
+      var copyHost = block.classList.contains('highlight') ? block : (block.closest('pre') || block);
+      copyHost.querySelectorAll('.copy-code-button, .code-copy-button, .clipboard-button, .highlight-copy-btn').forEach(function (legacyBtn) {
+        legacyBtn.remove();
+      });
+
       if (!copyHost.querySelector('.code-copy-btn')) {
         var btn = document.createElement('button');
         btn.type = 'button';
@@ -459,17 +569,38 @@
         copyHost.appendChild(btn);
 
         btn.addEventListener('click', function () {
-          var text = code ? code.innerText : '';
+          var text = (code.textContent || '').replace(/\s+$/, '');
           if (!text) return;
-          navigator.clipboard.writeText(text).then(function () {
-            var old = btn.textContent;
-            btn.textContent = 'Copied';
-            setTimeout(function () { btn.textContent = old; }, 1200);
-          }).catch(function () {
-            var old = btn.textContent;
-            btn.textContent = 'Failed';
-            setTimeout(function () { btn.textContent = old; }, 1200);
-          });
+
+          if (btn.dataset.resetTimer) {
+            clearTimeout(Number(btn.dataset.resetTimer));
+            delete btn.dataset.resetTimer;
+          }
+
+          // Immediate single-node text swap: Copy -> Copied
+          btn.textContent = 'Copied';
+          btn.dataset.copyState = 'copied';
+          btn.disabled = true;
+
+          var scheduleReset = function () {
+            var timer = setTimeout(function () {
+              btn.textContent = 'Copy';
+              btn.disabled = false;
+              delete btn.dataset.copyState;
+              delete btn.dataset.resetTimer;
+            }, 1200);
+            btn.dataset.resetTimer = String(timer);
+          };
+
+          copyWithFallback(text)
+            .then(function () {
+              scheduleReset();
+            })
+            .catch(function () {
+              btn.textContent = 'Failed';
+              btn.dataset.copyState = 'copied';
+              scheduleReset();
+            });
         });
       }
     });
