@@ -2,7 +2,7 @@
 title: "Xray + iptables 安装与配置笔记"
 date: 2026-03-12T04:50:00+08:00
 summary: 更贴近原始笔记的中文整理版，补回完整章节、小标题、配置模板与 iptables 脚本示例。
-description: 按原始源文件结构重写，覆盖架构说明、Xray 安装配置、两类 iptables 方案、systemd 自启、排障命令与附录模板。
+description: 一份可直接参考的 Xray 与 iptables 安装和分流配置笔记。
 tags:
   - Xray
   - iptables

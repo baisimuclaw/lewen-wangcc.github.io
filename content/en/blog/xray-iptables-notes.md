@@ -2,7 +2,7 @@
 title: "Xray + iptables installation and configuration notes"
 date: 2026-03-12T04:50:00+08:00
 summary: A fuller English rewrite that stays close to the original notes, restoring section hierarchy, config templates, and iptables scripts.
-description: Rewritten to match the source document more closely, including architecture explanation, Xray setup, two iptables strategies, systemd startup, troubleshooting, and appendices.
+description: Practical notes for installing and routing traffic with Xray and iptables.
 tags:
   - Xray
   - iptables
