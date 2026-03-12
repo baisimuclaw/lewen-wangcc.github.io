@@ -1,7 +1,7 @@
 ---
 title: "Xray + iptables installation and configuration notes"
 date: 2026-03-12T04:50:00+08:00
-summary: A fuller English rewrite that stays close to the original notes, restoring section hierarchy, config templates, and iptables scripts.
+summary: Step-by-step notes covering Xray installation, config.json setup, and transparent proxying with iptables — including forced-proxy mode, health-check fallback, and systemd startup.
 description: Practical notes for installing and routing traffic with Xray and iptables.
 tags:
   - Xray
@@ -17,7 +17,7 @@ tags:
 >
 > **Reminder:** the `iptables`, `systemctl`, `/usr/local/bin/`, and `/etc/systemd/system/` operations shown here all require `sudo`. Before making changes, make sure you still have a recovery path such as SSH, console access, or another way back into the machine.
 >
-> If you only want the practical path, start from **Section 5**.
+> If you only want the practical path, start from <a href="#section-5" class="appendix-back-btn">↓ Section 5</a>.
 
 ## 1. What is this architecture doing?
 
@@ -77,10 +77,10 @@ The diagram above gives a quick visual view of how the components relate to each
 This note follows the same sequence as the source document:
 
 5. **Complete Xray installation and configuration flow**
-6. **Xray commands and troubleshooting**
-7. **iptables configuration flow**
+6. **iptables configuration flow**
    - Case 1: forced transparent proxying, no condition check
    - Case 2: Xray health check to avoid a total network outage
+7. **Reference and troubleshooting commands**
 8. **Appendices**
    - Appendix A: single-exit configuration template
    - Appendix B: dual-exit configuration template
@@ -95,6 +95,8 @@ If you only want the main path, do it in this order:
    - either forced transparent proxying,
    - or health check with automatic fallback.
 5. Then configure `systemd` startup.
+
+<a id="section-5"></a>
 
 ## 5. Xray installation and configuration flow
 
@@ -153,7 +155,14 @@ ls -l /usr/local/etc/xray/config.json
 
 If the file does not exist yet, you can create it manually in the next step.
 
-### 5.5 Choose a configuration type
+<a id=”section-55”></a>
+
+### 5.5 Edit the configuration with nano
+
+```bash
+# Edit the Xray configuration file with nano
+sudo nano /usr/local/etc/xray/config.json
+```
 
 The templates here are the base skeletons for generating `config.json`. They determine where different traffic types eventually go.
 
@@ -162,35 +171,20 @@ If your requirement is:
 - OpenAI / ChatGPT / Codex / GPT related traffic goes through **node 1**
 - all other traffic goes **direct**
 
-use:
-
-```text
-Appendix A: single-exit configuration template
-```
+use: <a href=”#appendix-a” class=”appendix-back-btn”>↓ Appendix A: single-exit configuration template</a>
 
 If your requirement is:
 
 - OpenAI / ChatGPT / Codex / GPT related traffic goes through **node 1**
 - all other traffic goes through **node 2**
 
-use:
-
-```text
-Appendix B: dual-exit configuration template
-```
+use: <a href=”#appendix-b” class=”appendix-back-btn”>↓ Appendix B: dual-exit configuration template</a>
 
 > Practical note: if you do not want to fill every field by hand, you can give “one or more proxy node links + the template you want” to a commercial model to generate a first draft of `config.json`, and then validate it yourself locally. To reduce sensitive-data trace risk, temporary chats or one-off sessions are safer for that step.
 
-### 5.6 Edit the configuration with nano
-
-```bash
-# Edit the Xray configuration file with nano
-sudo nano /usr/local/etc/xray/config.json
-```
-
 Paste the full template you chose, then replace the placeholders with your own values.
 
-#### 5.6.1 Save and exit in nano
+#### 5.5.1 Save and exit in nano
 
 ```text
 Ctrl + O   -> write file
@@ -205,14 +199,14 @@ Ctrl + X
 press N
 ```
 
-#### 5.6.2 Reference docs
+#### 5.5.2 Reference docs
 
 ```text
 https://www.nano-editor.org/docs.php
 https://xtls.github.io/config/
 ```
 
-### 5.7 Test the config syntax
+### 5.6 Test the config syntax
 
 ```bash
 # Check whether Xray can parse the config correctly
@@ -228,7 +222,7 @@ Configuration OK.
 
 If this step fails, do not start the service yet. Go back and fix the config first.
 
-### 5.8 Enable and start Xray
+### 5.7 Enable and start Xray
 
 ```bash
 # Reload systemd configuration
@@ -260,7 +254,7 @@ Active: failed
 
 then the configuration or startup parameters still need troubleshooting.
 
-### 5.9 Check whether the listening ports are correct
+### 5.8 Check whether the listening ports are correct
 
 ```bash
 # Check whether transparent proxy, SOCKS, and HTTP inbounds are listening
@@ -284,57 +278,9 @@ At minimum you should see:
 
 Once those appear, the Xray installation and configuration flow is done.
 
-## 6. Xray commands and troubleshooting information
+## 6. iptables configuration flow
 
-This section is not the main setup path anymore. It is the set of commands you will commonly use after installation.
-
-```bash
-# Start Xray
-sudo systemctl start xray
-
-# Stop Xray
-sudo systemctl stop xray
-
-# Restart Xray
-sudo systemctl restart xray
-
-# Try to reload config (if the service supports reload)
-sudo systemctl reload xray
-
-# Enable on boot
-sudo systemctl enable xray
-
-# Disable on boot
-sudo systemctl disable xray
-
-# Check Xray service status
-sudo systemctl status xray --no-pager -n 50
-```
-
-```bash
-# Show the latest 100 lines of Xray logs
-journalctl -u xray -n 100 --no-pager
-
-# Follow Xray logs in real time
-journalctl -u xray -f
-```
-
-```bash
-# Check whether key ports are listening
-ss -ltnup | grep -E '12345|10808|10809'
-```
-
-```bash
-# Query egress IP through SOCKS proxy
-curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
-
-# Query egress IP through HTTP proxy
-curl -x http://127.0.0.1:10809 https://api.ipify.org
-```
-
-## 7. iptables configuration flow
-
-### 7.1 What is iptables doing here?
+### 6.1 What is iptables doing here?
 
 In this architecture, iptables is responsible for:
 
@@ -350,7 +296,7 @@ Xray decides where traffic should go, and iptables decides which traffic enters 
 
 This is where transparent proxy rules begin. There are two cases.
 
-## 8. Case 1: forced transparent proxying, with no condition checks
+## 7. Case 1: forced transparent proxying, with no condition checks
 
 If your requirement is:
 
@@ -360,7 +306,7 @@ If your requirement is:
 
 then you can use the following **forced transparent proxy** rule set.
 
-### 8.1 Write the script with nano
+### 7.1 Write the script with nano
 
 Create the script file first:
 
@@ -420,7 +366,7 @@ sudo iptables -t nat -A XRAY -m owner --uid-owner 65534 -j RETURN
 sudo iptables -t nat -A XRAY -p tcp -j REDIRECT --to-ports 12345
 ```
 
-### 8.2 Make the script executable and run it
+### 7.2 Make the script executable and run it
 
 ```bash
 # Make it executable
@@ -430,7 +376,7 @@ sudo chmod +x /usr/local/bin/xray-iptables-apply.sh
 sudo /usr/local/bin/xray-iptables-apply.sh
 ```
 
-### 8.3 What you should see after applying the rules
+### 7.3 What you should see after applying the rules
 
 ```bash
 # Export the current iptables rules
@@ -458,7 +404,7 @@ Pay attention to whether these entries exist:
 - `-A XRAY -p tcp -j REDIRECT --to-ports 12345`
 - `-A OUTPUT -p udp --dport 443 -j REJECT ...`
 
-### 8.4 How to verify that transparent proxying is actually working
+### 7.4 How to verify that transparent proxying is actually working
 
 ```bash
 # 1) Confirm Xray ports are still listening
@@ -486,7 +432,7 @@ then check in this order:
 3. whether routing rules are sending traffic into a bad outbound,
 4. whether the host itself can reach the network directly.
 
-### 8.5 Teardown script
+### 7.5 Teardown script
 
 ```bash
 sudo nano /usr/local/bin/xray-iptables-teardown.sh
@@ -524,7 +470,7 @@ Run it when you want to restore direct access:
 sudo /usr/local/bin/xray-iptables-teardown.sh
 ```
 
-### 8.6 What you should see after teardown
+### 7.6 What you should see after teardown
 
 ```bash
 # Export current iptables rules again
@@ -549,7 +495,7 @@ COMMIT
 
 That means the `XRAY` chain and its related jump rules should be gone.
 
-### 8.7 Make it start automatically on boot (for the forced mode)
+### 7.7 Make it start automatically on boot (for the forced mode)
 
 If you choose the forced transparent proxy mode, running the script once manually is not enough, because the iptables rules usually will not survive a reboot.
 
@@ -558,7 +504,7 @@ A direct way to handle this is:
 - let the Xray service start on boot,
 - create an extra `systemd` service that runs `xray-iptables-apply.sh` after boot.
 
-#### 8.7.1 Create a systemd service
+#### 7.7.1 Create a systemd service
 
 ```bash
 sudo nano /etc/systemd/system/xray-iptables-apply.service
@@ -580,7 +526,7 @@ RemainAfterExit=yes
 WantedBy=multi-user.target
 ```
 
-#### 8.7.2 Enable automatic startup
+#### 7.7.2 Enable automatic startup
 
 ```bash
 # Reload systemd configuration
@@ -593,7 +539,7 @@ sudo systemctl enable --now xray
 sudo systemctl enable --now xray-iptables-apply.service
 ```
 
-#### 8.7.3 Check service status
+#### 7.7.3 Check service status
 
 ```bash
 sudo systemctl status xray --no-pager
@@ -609,7 +555,7 @@ xray-iptables-apply.service: active (exited)
 
 `active (exited)` is normal here because the service only runs a script once and does not stay resident.
 
-#### 8.7.4 If you want to disable it later
+#### 7.7.4 If you want to disable it later
 
 ```bash
 sudo systemctl disable --now xray-iptables-apply.service
@@ -621,7 +567,7 @@ Then run the teardown script to go back to direct mode:
 sudo /usr/local/bin/xray-iptables-teardown.sh
 ```
 
-## 9. Case 2: check whether Xray is healthy and avoid a total network outage when it is not
+## 8. Case 2: check whether Xray is healthy and avoid a total network outage when it is not
 
 If your requirement is:
 
@@ -640,7 +586,7 @@ That means:
 - Xray healthy -> apply proxy rules
 - Xray unhealthy -> remove proxy rules and return to direct mode
 
-### 9.1 Write the health-check script with nano
+### 8.1 Write the health-check script with nano
 
 ```bash
 sudo nano /usr/local/bin/xray-iptables-healthcheck.sh
@@ -741,7 +687,7 @@ else
 fi
 ```
 
-### 9.2 Make the health-check script executable and test it once manually
+### 8.2 Make the health-check script executable and test it once manually
 
 ```bash
 # Make it executable
@@ -751,14 +697,14 @@ sudo chmod +x /usr/local/bin/xray-iptables-healthcheck.sh
 sudo /usr/local/bin/xray-iptables-healthcheck.sh
 ```
 
-### 9.3 Run the health-check script periodically with systemd
+### 8.3 Run the health-check script periodically with systemd
 
 After this is set up, systemd will run the health-check script once per minute:
 
 - if Xray is healthy, proxy rules stay applied,
 - if Xray is unhealthy, rules are switched back toward direct mode.
 
-#### 9.3.1 Create the systemd service
+#### 8.3.1 Create the systemd service
 
 ```bash
 sudo nano /etc/systemd/system/xray-iptables-healthcheck.service
@@ -774,7 +720,7 @@ Type=oneshot
 ExecStart=/usr/local/bin/xray-iptables-healthcheck.sh
 ```
 
-#### 9.3.2 Create the systemd timer
+#### 8.3.2 Create the systemd timer
 
 ```bash
 sudo nano /etc/systemd/system/xray-iptables-healthcheck.timer
@@ -793,7 +739,7 @@ Unit=xray-iptables-healthcheck.service
 WantedBy=timers.target
 ```
 
-#### 9.3.3 Enable the timer
+#### 8.3.3 Enable the timer
 
 ```bash
 # Reload systemd configuration
@@ -815,7 +761,59 @@ sudo systemctl list-timers --all | grep xray
 ... xray-iptables-healthcheck.timer loaded active waiting ...
 ```
 
-### 9.4 Useful health-check commands (run these after enabling the timer)
+## 9. Reference and troubleshooting commands
+
+### 9.1 Xray service commands
+
+```bash
+# Start Xray
+sudo systemctl start xray
+
+# Stop Xray
+sudo systemctl stop xray
+
+# Restart Xray
+sudo systemctl restart xray
+
+# Try to reload config (if the service supports reload)
+sudo systemctl reload xray
+
+# Enable on boot
+sudo systemctl enable xray
+
+# Disable on boot
+sudo systemctl disable xray
+
+# Check Xray service status
+sudo systemctl status xray --no-pager -n 50
+```
+
+### 9.2 Logs, ports, and connection tests
+
+```bash
+# Show the latest 100 lines of Xray logs
+journalctl -u xray -n 100 --no-pager
+
+# Follow Xray logs in real time
+journalctl -u xray -f
+
+# Check key listening ports
+ss -ltnup | grep -E '12345|10808|10809'
+
+# Export current iptables rules
+sudo iptables-save
+
+# Show nft backend rules
+sudo nft list ruleset
+
+# Query egress IP via SOCKS
+curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
+
+# Query egress IP via HTTP
+curl -x http://127.0.0.1:10809 https://api.ipify.org
+```
+
+### 9.3 Health-check timer commands (run after enabling the timer)
 
 **1) Check whether xray is running normally**
 
@@ -903,37 +901,9 @@ These results usually indicate a problem:
 - the healthcheck service exits with `status=1/FAILURE`
 - the jump / UDP / redirect counts are not what you expect, for example duplicates greater than `1`
 
-## 10. Other useful troubleshooting commands
+## 10. Final checklist
 
-```bash
-# Check current Xray status
-sudo systemctl status xray --no-pager -n 50
-
-# Show recent Xray logs
-journalctl -u xray -n 100 --no-pager
-
-# Follow Xray logs in real time
-journalctl -u xray -f
-
-# Check key listening ports
-ss -ltnup | grep -E '12345|10808|10809'
-
-# Export current iptables rules
-sudo iptables-save
-
-# Show nft backend rules
-sudo nft list ruleset
-
-# Query egress IP via SOCKS
-curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
-
-# Query egress IP via HTTP
-curl -x http://127.0.0.1:10809 https://api.ipify.org
-```
-
-## 11. Final checklist
-
-### 11.1 Is the Xray service itself healthy?
+### 10.1 Is the Xray service itself healthy?
 
 ```bash
 sudo systemctl status xray --no-pager
@@ -945,7 +915,7 @@ You should at least see:
 - `xray.service` as `active (running)`
 - `12345 / 10808 / 10809` listening
 
-### 11.2 Does the proxy egress match expectations?
+### 10.2 Does the proxy egress match expectations?
 
 ```bash
 curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
@@ -958,7 +928,7 @@ If the IP is wrong here, check:
 - whether routing sends traffic to the wrong outbound,
 - whether the node itself is usable.
 
-### 11.3 Do the iptables rules match the mode you chose?
+### 10.3 Do the iptables rules match the mode you chose?
 
 ```bash
 sudo iptables-save
@@ -969,7 +939,7 @@ You need to confirm which mode you are in:
 - **forced transparent proxy mode**: rules should stay present,
 - **health-check fallback mode**: rules should change with Xray health.
 
-### 11.4 Does startup behavior match expectations?
+### 10.4 Does startup behavior match expectations?
 
 If you use the forced mode, check:
 
@@ -984,7 +954,7 @@ sudo systemctl status xray-iptables-healthcheck.timer --no-pager
 sudo systemctl list-timers --all | grep xray
 ```
 
-### 11.5 Where should you look first when something breaks?
+### 10.5 Where should you look first when something breaks?
 
 Check in this order first:
 
@@ -994,7 +964,7 @@ Check in this order first:
 4. `sudo iptables-save`
 5. `curl -x socks5h://127.0.0.1:10808 https://api.ipify.org`
 
-## 12. Related file locations
+## 11. Related file locations
 
 The files directly related to this shareable note in the workspace are:
 
@@ -1012,7 +982,11 @@ As absolute paths:
 /home/claw1/.openclaw/workspace/tmp/xray-config/Xray-iptables-notes.md
 ```
 
+<a id="appendix-a"></a>
+
 ## Appendix A: single-exit configuration template
+
+<a href="#section-55" class="appendix-back-btn">↑ Back to §5.5 Edit the configuration with nano</a>
 
 ```json
 {
@@ -1152,7 +1126,11 @@ As absolute paths:
 }
 ```
 
+<a id="appendix-b"></a>
+
 ## Appendix B: dual-exit configuration template
+
+<a href="#section-55" class="appendix-back-btn">↑ Back to §5.5 Edit the configuration with nano</a>
 
 ```json
 {

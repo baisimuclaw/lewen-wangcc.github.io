@@ -3,7 +3,7 @@
 <!-- Last Published: March 12, 2026 --><html lang="en-us" dir="ltr"
       data-wc-theme-default="system">
   
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,9 +44,9 @@
   <meta name="description" content="" />
 
   
-    <link rel="alternate" hreflang="zh" href="http://192.168.2.179:1313/zh/publication/" />
+    <link rel="alternate" hreflang="zh" href="https://lewen-wangcc.github.io/zh/publication/" />
   
-  <link rel="alternate" hreflang="en-us" href="http://192.168.2.179:1313/publication/" />
+  <link rel="alternate" hreflang="en-us" href="https://lewen-wangcc.github.io/publication/" />
 
   
   
@@ -132,6 +132,45 @@
 
 
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5FT9F48DR6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-5FT9F48DR6', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
 
 
 
@@ -160,10 +199,10 @@
   
 
   
-  <link rel="icon" type="image/png" href="/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_32x32_fill_lanczos_center_3.png" />
-  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_180x180_fill_lanczos_center_3.png" />
+  <link rel="icon" type="image/png" href="/media/icon_hu_5cac115d14ed3d49.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu_e7f327b39c12e7ca.png" />
 
-  <link rel="canonical" href="http://192.168.2.179:1313/publication/" />
+  <link rel="canonical" href="https://lewen-wangcc.github.io/publication/" />
 
   
   
@@ -186,10 +225,10 @@
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="Lewen Wang" />
-  <meta property="og:url" content="http://192.168.2.179:1313/publication/" />
+  <meta property="og:url" content="https://lewen-wangcc.github.io/publication/" />
   <meta property="og:title" content="Publications | Lewen Wang" />
-  <meta property="og:description" content="" /><meta property="og:image" content="http://192.168.2.179:1313/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_512x512_fill_lanczos_center_3.png" />
-    <meta property="twitter:image" content="http://192.168.2.179:1313/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="" /><meta property="og:image" content="https://lewen-wangcc.github.io/media/icon_hu_645fa481986063ef.png" />
+    <meta property="twitter:image" content="https://lewen-wangcc.github.io/media/icon_hu_645fa481986063ef.png" /><meta property="og:locale" content="en-us" />
   
     
     
@@ -760,8 +799,8 @@
   
   <script
     defer
-    src="/js/hugo-blox-en.min.js"
-    integrity=""
+    src="/js/hugo-blox-en.min.e5fa931947cac2d947732ea37a770aae2b5bd4a50b6048060cd129b46159a06d.js"
+    integrity="sha256-5fqTGUfKwtlHcy6jencKritb1KULYEgGDNEptGFZoG0="
   ></script>
 
   
@@ -960,7 +999,7 @@
       
         <li class="flex flex-col">
           <a
-            href="http://192.168.2.179:1313/zh/publication/"
+            href="https://lewen-wangcc.github.io/zh/publication/"
             class="relative cursor-pointer text-gray-800 dark:text-gray-100 hover:bg-primary-50 hover:text-primary-600 hover:dark:bg-primary-500/10 hover:dark:text-primary-200 whitespace-nowrap py-1.5 transition-colors ltr:pl-3 ltr:pr-9 rtl:pr-3 rtl:pl-9"
           >中文 (简体)</a>
         </li>
@@ -1383,7 +1422,7 @@
   </div>
   <div class="font-bold">English</div>
   
-  <div><a href="http://192.168.2.179:1313/zh/publication/">中文 (简体)</a></div>
+  <div><a href="https://lewen-wangcc.github.io/zh/publication/">中文 (简体)</a></div>
   
 </div>
 

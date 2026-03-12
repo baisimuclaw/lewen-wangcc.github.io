@@ -2,27 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>关于我 | 王乐文</title>
-    <link>http://192.168.2.179:1313/zh/</link>
-      <atom:link href="http://192.168.2.179:1313/zh/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://lewen-wangcc.github.io/zh/</link>
+      <atom:link href="https://lewen-wangcc.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
     <description>关于我</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>zh-Hans</language><lastBuildDate>Mon, 30 Dec 2024 10:00:00 +0800</lastBuildDate>
     <image>
-      <url>http://192.168.2.179:1313/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_512x512_fill_lanczos_center_3.png</url>
+      <url>https://lewen-wangcc.github.io/media/icon_hu_645fa481986063ef.png</url>
       <title>关于我</title>
-      <link>http://192.168.2.179:1313/zh/</link>
+      <link>https://lewen-wangcc.github.io/zh/</link>
     </image>
     
     <item>
       <title>Xray &#43; iptables 安装与配置笔记</title>
-      <link>http://192.168.2.179:1313/zh/blog/xray-iptables-notes/</link>
+      <link>https://lewen-wangcc.github.io/zh/blog/xray-iptables-notes/</link>
       <pubDate>Thu, 12 Mar 2026 04:50:00 +0800</pubDate>
-      <guid>http://192.168.2.179:1313/zh/blog/xray-iptables-notes/</guid>
+      <guid>https://lewen-wangcc.github.io/zh/blog/xray-iptables-notes/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;这是一份&lt;strong&gt;适合分享&lt;/strong&gt;的通用笔记，不包含任何真实节点、UUID、公钥、密码或其他私密信息。&lt;/p&gt;
 &lt;p&gt;所有命令、脚本、配置都以代码块形式给出，方便直接复制到 Typora 或其他 Markdown 阅读器中查看。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;提醒：&lt;/strong&gt; 本文中的 &lt;code&gt;iptables&lt;/code&gt;、&lt;code&gt;systemctl&lt;/code&gt;、写入 &lt;code&gt;/usr/local/bin/&lt;/code&gt; 与 &lt;code&gt;/etc/systemd/system/&lt;/code&gt; 等操作都需要 &lt;code&gt;sudo&lt;/code&gt; 权限。正式操作前，建议先确认自己可以通过 SSH、控制台或另一种方式重新接入机器，避免误操作后把自己挡在外面。&lt;/p&gt;
-&lt;p&gt;如果你只是想照着做，建议直接从 &lt;strong&gt;第 5 节&lt;/strong&gt; 开始往下看。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;如果你只是想照着做，建议直接从 &lt;a href=&#34;#section-5&#34; class=&#34;appendix-back-btn&#34;&gt;↓ 第 5 节&lt;/a&gt; 开始往下看。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;1-这套架构是在做什么&#34;&gt;1. 这套架构是在做什么？&lt;/h2&gt;
 &lt;p&gt;这份笔记讲的是一种很常见的本机流量分发架构：&lt;/p&gt;
 &lt;ul&gt;
@@ -81,7 +80,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 
 &lt;figure  &gt;
   &lt;div class=&#34;flex justify-center	&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;http://192.168.2.179:1313/media/blog/xray-iptables-architecture.jpg&#34; alt=&#34;Xray &amp;#43; iptables 架构图&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://lewen-wangcc.github.io/media/blog/xray-iptables-architecture.jpg&#34; alt=&#34;Xray &amp;#43; iptables 架构图&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;下面这张图可以帮助你快速理解组件之间的关系。&lt;/p&gt;
@@ -90,13 +89,13 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;p&gt;这份笔记按下面的顺序组织：&lt;/p&gt;
 &lt;ol start=&#34;5&#34;&gt;
 &lt;li&gt;&lt;strong&gt;Xray 安装与配置的完整流程&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Xray 相关指令与排障命令&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;iptables 配置流程&lt;/strong&gt;
 &lt;ul&gt;
 &lt;li&gt;情况 1：强制透明代理，不做条件判断&lt;/li&gt;
 &lt;li&gt;情况 2：检测 Xray 健康状态，避免完全断网&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参考与排障命令&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;附录&lt;/strong&gt;
 &lt;ul&gt;
 &lt;li&gt;附录 A：单出口配置模板&lt;/li&gt;
@@ -118,6 +117,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;/li&gt;
 &lt;li&gt;最后再做 &lt;code&gt;systemd&lt;/code&gt; 开机自启&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;&lt;a id=&#34;section-5&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;5-xray-安装与配置流程&#34;&gt;5. Xray 安装与配置流程&lt;/h2&gt;
 &lt;h3 id=&#34;51-xray-是干嘛的&#34;&gt;5.1 Xray 是干嘛的？&lt;/h3&gt;
 &lt;p&gt;在这套架构里，Xray 负责：&lt;/p&gt;
@@ -133,8 +133,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 安装 Xray（必须使用 sudo，且整条命令保持单行执行）&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo bash -c &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; @ install
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;注意：不要把 &lt;code&gt;@ install&lt;/code&gt; 换到下一行，否则会触发 &lt;code&gt;install&lt;/code&gt; 命令报错。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;注意：不要把 &lt;code&gt;@ install&lt;/code&gt; 换到下一行，否则会触发 &lt;code&gt;install&lt;/code&gt; 命令报错。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id=&#34;53-查看是否安装成功&#34;&gt;5.3 查看是否安装成功&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看 Xray 版本&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/usr/local/bin/xray version
@@ -147,30 +146,27 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;预期输出示例：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-rw-r--r-- 1 root root 1234 ... /usr/local/etc/xray/config.json
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果文件不存在，也没关系，下一步可以手动创建。&lt;/p&gt;
-&lt;h3 id=&#34;55-选择配置类型&#34;&gt;5.5 选择配置类型&lt;/h3&gt;
-&lt;p&gt;这里的“模板”是用于生成 &lt;code&gt;config.json&lt;/code&gt; 的基础骨架，决定不同流量最终走哪条出口。&lt;/p&gt;
+&lt;p&gt;&lt;a id=”section-55”&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;55-使用-nano-编辑配置文件&#34;&gt;5.5 使用 nano 编辑配置文件&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 用 nano 编辑 Xray 配置文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /usr/local/etc/xray/config.json
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里的”模板”是用于生成 &lt;code&gt;config.json&lt;/code&gt; 的基础骨架，决定不同流量最终走哪条出口。&lt;/p&gt;
 &lt;p&gt;如果你的需求是：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;OpenAI / ChatGPT / Codex / GPT 相关流量走&lt;strong&gt;节点 1&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;其他流量&lt;strong&gt;直连&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;那么请使用：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;附录 A：单出口配置模板
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果你的需求是：&lt;/p&gt;
+&lt;p&gt;那么请使用：&lt;a href=”#appendix-a” class=”appendix-back-btn”&gt;↓ 附录 A：单出口配置模板&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如果你的需求是：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;OpenAI / ChatGPT / Codex / GPT 相关流量走&lt;strong&gt;节点 1&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;其他流量走&lt;strong&gt;节点 2&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;那么请使用：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;附录 B：双出口配置模板
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;实用提醒：如果你不想手工逐项填配置，可以把“代理节点链接（单个或多个）+ 你要使用的模板”发给商用模型，让它先生成一份可用 &lt;code&gt;config.json&lt;/code&gt; 初稿，再回到本机自行核对与测试。为了降低敏感信息留痕风险，建议优先使用&lt;strong&gt;临时聊天&lt;/strong&gt;或一次性会话来处理节点内容。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;56-使用-nano-编辑配置文件&#34;&gt;5.6 使用 nano 编辑配置文件&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 用 nano 编辑 Xray 配置文件&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /usr/local/etc/xray/config.json
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后把你选好的附录模板内容完整复制进去，并把占位符替换成你自己的参数。&lt;/p&gt;
-&lt;h4 id=&#34;561-nano-保存与退出方法&#34;&gt;5.6.1 nano 保存与退出方法&lt;/h4&gt;
+&lt;p&gt;那么请使用：&lt;a href=”#appendix-b” class=”appendix-back-btn”&gt;↓ 附录 B：双出口配置模板&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;实用提醒：如果你不想手工逐项填配置，可以把”代理节点链接（单个或多个）+ 你要使用的模板”发给商用模型，让它先生成一份可用 &lt;code&gt;config.json&lt;/code&gt; 初稿，再回到本机自行核对与测试。为了降低敏感信息留痕风险，建议优先使用&lt;strong&gt;临时聊天&lt;/strong&gt;或一次性会话来处理节点内容。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;然后把你选好的附录模板内容完整复制进去，并把占位符替换成你自己的参数。&lt;/p&gt;
+&lt;h4 id=&#34;551-nano-保存与退出方法&#34;&gt;5.5.1 nano 保存与退出方法&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ctrl + O   -&amp;gt; 写入（保存）文件
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Enter      -&amp;gt; 确认文件名
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ctrl + X   -&amp;gt; 退出 nano
@@ -178,17 +174,17 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ctrl + X
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;按 N
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;即可退出且不保存。&lt;/p&gt;
-&lt;h4 id=&#34;562-参考文档&#34;&gt;5.6.2 参考文档&lt;/h4&gt;
+&lt;h4 id=&#34;552-参考文档&#34;&gt;5.5.2 参考文档&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://www.nano-editor.org/docs.php
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://xtls.github.io/config/
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;57-检查配置语法&#34;&gt;5.7 检查配置语法&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;56-检查配置语法&#34;&gt;5.6 检查配置语法&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 检查配置是否可被 Xray 正常解析&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo /usr/local/bin/xray run -test -config /usr/local/etc/xray/config.json
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;预期输出示例：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Xray 1.x.x ...
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Configuration OK.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果这里报错，不要继续启动服务，先回到 &lt;code&gt;nano&lt;/code&gt; 里修配置。&lt;/p&gt;
-&lt;h3 id=&#34;58-启用并启动-xray&#34;&gt;5.8 启用并启动 Xray&lt;/h3&gt;
+&lt;h3 id=&#34;57-启用并启动-xray&#34;&gt;5.7 启用并启动 Xray&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 重载 systemd 配置&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl daemon-reload
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -207,7 +203,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果这里看到的是：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Active: failed
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;说明配置或启动参数还有问题，需要先看日志排查。&lt;/p&gt;
-&lt;h3 id=&#34;59-检查监听端口是否正常&#34;&gt;5.9 检查监听端口是否正常&lt;/h3&gt;
+&lt;h3 id=&#34;58-检查监听端口是否正常&#34;&gt;5.8 检查监听端口是否正常&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看透明代理、SOCKS、HTTP 入口端口是否已监听&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -ltnup &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -E &lt;span class=&#34;s1&#34;&gt;&amp;#39;12345|10808|10809&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;预期输出示例：&lt;/strong&gt;&lt;/p&gt;
@@ -222,42 +218,8 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;li&gt;&lt;code&gt;10809&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;都已经出现。到这里，Xray 本身的安装与配置流程就完成了。&lt;/p&gt;
-&lt;h2 id=&#34;6-xray-相关指令与排障信息&#34;&gt;6. Xray 相关指令与排障信息&lt;/h2&gt;
-&lt;p&gt;这一节不再属于“主流程”，而是安装完成后常用的查看和排障命令。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 启动 Xray&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl start xray
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 停止 Xray&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl stop xray
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 重启 Xray&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl restart xray
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 尝试重新加载配置（前提是服务支持 reload）&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl reload xray
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 设置开机自启&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; xray
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 取消开机自启&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl disable xray
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看 Xray 服务状态&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray --no-pager -n &lt;span class=&#34;m&#34;&gt;50&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看最近 100 行 Xray 日志&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl -u xray -n &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt; --no-pager
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 实时跟踪 Xray 日志&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl -u xray -f
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看关键端口是否在监听&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -ltnup &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -E &lt;span class=&#34;s1&#34;&gt;&amp;#39;12345|10808|10809&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 通过 SOCKS 代理查询出口 IP&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 通过 HTTP 代理查询出口 IP&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x http://127.0.0.1:10809 https://api.ipify.org
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;7-iptables-配置流程&#34;&gt;7. iptables 配置流程&lt;/h2&gt;
-&lt;h3 id=&#34;71-iptables-是干嘛的&#34;&gt;7.1 iptables 是干嘛的？&lt;/h3&gt;
+&lt;h2 id=&#34;6-iptables-配置流程&#34;&gt;6. iptables 配置流程&lt;/h2&gt;
+&lt;h3 id=&#34;61-iptables-是干嘛的&#34;&gt;6.1 iptables 是干嘛的？&lt;/h3&gt;
 &lt;p&gt;在这套架构里，iptables 负责：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;拦截本机发出的流量&lt;/li&gt;
@@ -267,7 +229,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;p&gt;换句话说：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Xray 决定“流量往哪走”，iptables 决定“哪些流量先送进 Xray”。
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这一节开始进入透明代理规则。这里分成两种情况。&lt;/p&gt;
-&lt;h2 id=&#34;8-情况-1你需要强制透明代理不做条件判断&#34;&gt;8. 情况 1：你需要“强制透明代理”，不做条件判断&lt;/h2&gt;
+&lt;h2 id=&#34;7-情况-1你需要强制透明代理不做条件判断&#34;&gt;7. 情况 1：你需要”强制透明代理”，不做条件判断&lt;/h2&gt;
 &lt;p&gt;如果你的需求是：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;所有外部 TCP 都必须被导向 Xray&lt;/li&gt;
@@ -275,7 +237,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;li&gt;你不需要自动回退到直连&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;那么你可以使用下面这套&lt;strong&gt;强制透明代理&lt;/strong&gt;规则。&lt;/p&gt;
-&lt;h3 id=&#34;81-用-nano-写入脚本&#34;&gt;8.1 用 nano 写入脚本&lt;/h3&gt;
+&lt;h3 id=&#34;71-用-nano-写入脚本&#34;&gt;7.1 用 nano 写入脚本&lt;/h3&gt;
 &lt;p&gt;先创建脚本文件：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /usr/local/bin/xray-iptables-apply.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;把下面内容完整贴进去：&lt;/p&gt;
@@ -326,13 +288,13 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 其余 TCP 流量全部重定向到 Xray 的透明代理入口 12345&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables -t nat -A XRAY -p tcp -j REDIRECT --to-ports &lt;span class=&#34;m&#34;&gt;12345&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;82-给脚本赋权并执行&#34;&gt;8.2 给脚本赋权并执行&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;72-给脚本赋权并执行&#34;&gt;7.2 给脚本赋权并执行&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 赋予执行权限&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo chmod +x /usr/local/bin/xray-iptables-apply.sh
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 执行脚本&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo /usr/local/bin/xray-iptables-apply.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;83-执行写入脚本后应该看到什么&#34;&gt;8.3 执行写入脚本后应该看到什么&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;73-执行写入脚本后应该看到什么&#34;&gt;7.3 执行写入脚本后应该看到什么&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 导出当前 iptables 规则&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables-save
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;预期输出示例：&lt;/strong&gt;&lt;/p&gt;
@@ -352,7 +314,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;li&gt;&lt;code&gt;-A XRAY -p tcp -j REDIRECT --to-ports 12345&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;-A OUTPUT -p udp --dport 443 -j REJECT ...&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;84-如何验证透明代理是否真的生效&#34;&gt;8.4 如何验证透明代理是否真的生效&lt;/h3&gt;
+&lt;h3 id=&#34;74-如何验证透明代理是否真的生效&#34;&gt;7.4 如何验证透明代理是否真的生效&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 1) 确认 Xray 端口还在监听&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -ltnup &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -E &lt;span class=&#34;s1&#34;&gt;&amp;#39;12345|10808|10809&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -376,7 +338,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;li&gt;routing 规则是否把目标错误地送进了不可用出口&lt;/li&gt;
 &lt;li&gt;目标机器本身是否能正常直连外网&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;85-teardown-脚本&#34;&gt;8.5 teardown 脚本&lt;/h3&gt;
+&lt;h3 id=&#34;75-teardown-脚本&#34;&gt;7.5 teardown 脚本&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /usr/local/bin/xray-iptables-teardown.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;写入以下内容：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/usr/bin/env bash
@@ -398,7 +360,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo chmod +x /usr/local/bin/xray-iptables-teardown.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;需要恢复直连时执行：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo /usr/local/bin/xray-iptables-teardown.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;86-teardown-后应该看到什么&#34;&gt;8.6 teardown 后应该看到什么&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;76-teardown-后应该看到什么&#34;&gt;7.6 teardown 后应该看到什么&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 再次导出当前 iptables 规则&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables-save
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;预期输出示例：&lt;/strong&gt;&lt;/p&gt;
@@ -414,14 +376,14 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;:POSTROUTING ACCEPT [0:0]
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;COMMIT
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也就是说，之前的 &lt;code&gt;XRAY&lt;/code&gt; 链和相关跳转应该已经不存在了。&lt;/p&gt;
-&lt;h3 id=&#34;87-做成开机自启适用于强制透明代理方案&#34;&gt;8.7 做成开机自启（适用于强制透明代理方案）&lt;/h3&gt;
+&lt;h3 id=&#34;77-做成开机自启适用于强制透明代理方案&#34;&gt;7.7 做成开机自启（适用于强制透明代理方案）&lt;/h3&gt;
 &lt;p&gt;如果你选择的是“情况 1：强制透明代理”，那么仅仅手动执行一次脚本还不够。因为机器重启后，iptables 规则通常不会自动恢复。&lt;/p&gt;
 &lt;p&gt;比较直接的做法是：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Xray 服务开机启动&lt;/li&gt;
 &lt;li&gt;再额外创建一个 &lt;code&gt;systemd&lt;/code&gt; 服务，在开机后执行 &lt;code&gt;xray-iptables-apply.sh&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;871-创建-systemd-服务&#34;&gt;8.7.1 创建 systemd 服务&lt;/h4&gt;
+&lt;h4 id=&#34;771-创建-systemd-服务&#34;&gt;7.7.1 创建 systemd 服务&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /etc/systemd/system/xray-iptables-apply.service
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;写入以下内容：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
@@ -437,7 +399,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Install]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;multi-user.target&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;872-启用开机自启&#34;&gt;8.7.2 启用开机自启&lt;/h4&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;772-启用开机自启&#34;&gt;7.7.2 启用开机自启&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 重新加载 systemd 配置&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl daemon-reload
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -446,18 +408,18 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 启用 iptables 规则服务&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; --now xray-iptables-apply.service
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;873-检查服务状态&#34;&gt;8.7.3 检查服务状态&lt;/h4&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;773-检查服务状态&#34;&gt;7.7.3 检查服务状态&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray --no-pager
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray-iptables-apply.service --no-pager
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果一切正常，你应该看到：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;xray.service: active (running)
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;xray-iptables-apply.service: active (exited)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里 &lt;code&gt;active (exited)&lt;/code&gt; 是正常现象，因为这个服务只是执行一次脚本，不是长期驻留进程。&lt;/p&gt;
-&lt;h4 id=&#34;874-如果要取消开机自启&#34;&gt;8.7.4 如果要取消开机自启&lt;/h4&gt;
+&lt;h4 id=&#34;774-如果要取消开机自启&#34;&gt;7.7.4 如果要取消开机自启&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl disable --now xray-iptables-apply.service
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后再执行 teardown 脚本恢复直连：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo /usr/local/bin/xray-iptables-teardown.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;9-情况-2你需要检测-xray-是否工作并在异常时防止完全断网&#34;&gt;9. 情况 2：你需要检测 Xray 是否工作，并在异常时防止完全断网&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;8-情况-2你需要检测-xray-是否工作并在异常时防止完全断网&#34;&gt;8. 情况 2：你需要检测 Xray 是否工作，并在异常时防止完全断网&lt;/h2&gt;
 &lt;p&gt;如果你的需求是：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Xray 正常时，流量照常被透明代理&lt;/li&gt;
@@ -471,7 +433,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;li&gt;Xray 正常 -&amp;gt; 装代理规则&lt;/li&gt;
 &lt;li&gt;Xray 异常 -&amp;gt; 卸载代理规则，切回直连&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;91-用-nano-写入健康检查脚本&#34;&gt;9.1 用 nano 写入健康检查脚本&lt;/h3&gt;
+&lt;h3 id=&#34;81-用-nano-写入健康检查脚本&#34;&gt;8.1 用 nano 写入健康检查脚本&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /usr/local/bin/xray-iptables-healthcheck.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;写入以下内容：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/usr/bin/env bash
@@ -564,19 +526,19 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Xray unhealthy -&amp;gt; switch to direct mode&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  apply_direct_rules
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;92-给健康检查脚本赋权并先手动测试一次&#34;&gt;9.2 给健康检查脚本赋权并先手动测试一次&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;82-给健康检查脚本赋权并先手动测试一次&#34;&gt;8.2 给健康检查脚本赋权并先手动测试一次&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 赋予执行权限&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo chmod +x /usr/local/bin/xray-iptables-healthcheck.sh
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 先手动执行一次，确认脚本本身没有语法或权限问题&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo /usr/local/bin/xray-iptables-healthcheck.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;93-systemd-定时执行健康检查脚本&#34;&gt;9.3 systemd 定时执行健康检查脚本&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;83-systemd-定时执行健康检查脚本&#34;&gt;8.3 systemd 定时执行健康检查脚本&lt;/h3&gt;
 &lt;p&gt;这样配置完成后，systemd 会每分钟执行一次健康检查脚本：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;如果 Xray 正常，就维持透明代理规则&lt;/li&gt;
 &lt;li&gt;如果 Xray 异常，就尽量把规则切回直连&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;931-创建-systemd-service&#34;&gt;9.3.1 创建 systemd service&lt;/h4&gt;
+&lt;h4 id=&#34;831-创建-systemd-service&#34;&gt;8.3.1 创建 systemd service&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /etc/systemd/system/xray-iptables-healthcheck.service
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;Xray iptables healthcheck&lt;/span&gt;
@@ -585,7 +547,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Service]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;Type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;oneshot&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;ExecStart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;/usr/local/bin/xray-iptables-healthcheck.sh&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;932-创建-systemd-timer&#34;&gt;9.3.2 创建 systemd timer&lt;/h4&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;832-创建-systemd-timer&#34;&gt;8.3.2 创建 systemd timer&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /etc/systemd/system/xray-iptables-healthcheck.timer
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;Run Xray iptables healthcheck every minute&lt;/span&gt;
@@ -597,7 +559,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Install]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;timers.target&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;933-启用-timer&#34;&gt;9.3.3 启用 timer&lt;/h4&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;833-启用-timer&#34;&gt;8.3.3 启用 timer&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 重新加载 systemd 配置&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl daemon-reload
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -611,7 +573,50 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl list-timers --all &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep xray
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;预期输出示例：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;... xray-iptables-healthcheck.timer loaded active waiting ...
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;94-健康检查常用命令放在启用-timer-之后执行&#34;&gt;9.4 健康检查常用命令（放在启用 timer 之后执行）&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;9-参考与排障命令&#34;&gt;9. 参考与排障命令&lt;/h2&gt;
+&lt;h3 id=&#34;91-xray-服务控制命令&#34;&gt;9.1 Xray 服务控制命令&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 启动 Xray&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl start xray
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 停止 Xray&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl stop xray
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 重启 Xray&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl restart xray
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 尝试重新加载配置（前提是服务支持 reload）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl reload xray
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 设置开机自启&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; xray
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 取消开机自启&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl disable xray
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看 Xray 服务状态&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray --no-pager -n &lt;span class=&#34;m&#34;&gt;50&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;92-日志端口与连接测试&#34;&gt;9.2 日志、端口与连接测试&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看最近 100 行 Xray 日志&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl -u xray -n &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt; --no-pager
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 实时跟踪 Xray 日志&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl -u xray -f
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看关键端口监听状态&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -ltnup &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -E &lt;span class=&#34;s1&#34;&gt;&amp;#39;12345|10808|10809&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 导出当前 iptables 规则&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables-save
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看 nft 后端规则&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nft list ruleset
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 通过 SOCKS 查询出口 IP&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 通过 HTTP 查询出口 IP&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x http://127.0.0.1:10809 https://api.ipify.org
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;93-健康检查-timer-常用命令启用-timer-后执行&#34;&gt;9.3 健康检查 timer 常用命令（启用 timer 后执行）&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;1) 检查 xray 是否正常运行&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl is-active xray
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;预期（正常）：&lt;/p&gt;
@@ -645,32 +650,8 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;li&gt;healthcheck service 出现 &lt;code&gt;status=1/FAILURE&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;jump/udp/redir&lt;/code&gt; 计数不是预期值，例如重复大于 &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;10-其他常用排障命令&#34;&gt;10. 其他常用排障命令&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看 Xray 当前状态&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray --no-pager -n &lt;span class=&#34;m&#34;&gt;50&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看最近 Xray 日志&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl -u xray -n &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt; --no-pager
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 实时跟踪 Xray 日志&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl -u xray -f
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看关键端口监听状态&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -ltnup &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -E &lt;span class=&#34;s1&#34;&gt;&amp;#39;12345|10808|10809&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 导出当前 iptables 规则&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables-save
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看 nft 后端规则&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nft list ruleset
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 通过 SOCKS 查询出口 IP&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 通过 HTTP 查询出口 IP&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x http://127.0.0.1:10809 https://api.ipify.org
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;11-最后检查清单&#34;&gt;11. 最后检查清单&lt;/h2&gt;
-&lt;h3 id=&#34;111-xray-本体是否正常&#34;&gt;11.1 Xray 本体是否正常&lt;/h3&gt;
+&lt;h2 id=&#34;10-最后检查清单&#34;&gt;10. 最后检查清单&lt;/h2&gt;
+&lt;h3 id=&#34;101-xray-本体是否正常&#34;&gt;10.1 Xray 本体是否正常&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray --no-pager
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -ltnup &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -E &lt;span class=&#34;s1&#34;&gt;&amp;#39;12345|10808|10809&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;你应该至少看到：&lt;/p&gt;
@@ -678,7 +659,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;li&gt;&lt;code&gt;xray.service&lt;/code&gt; 是 &lt;code&gt;active (running)&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;12345 / 10808 / 10809&lt;/code&gt; 已监听&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;112-代理出口是否符合预期&#34;&gt;11.2 代理出口是否符合预期&lt;/h3&gt;
+&lt;h3 id=&#34;102-代理出口是否符合预期&#34;&gt;10.2 代理出口是否符合预期&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x http://127.0.0.1:10809 https://api.ipify.org
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果这里查到的 IP 不对，就要回头检查：&lt;/p&gt;
@@ -687,20 +668,20 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;li&gt;routing 是否把流量送到了错误出口&lt;/li&gt;
 &lt;li&gt;节点本身是否可用&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;113-iptables-规则是否符合你的方案&#34;&gt;11.3 iptables 规则是否符合你的方案&lt;/h3&gt;
+&lt;h3 id=&#34;103-iptables-规则是否符合你的方案&#34;&gt;10.3 iptables 规则是否符合你的方案&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables-save
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;你需要确认自己现在到底是哪一种模式：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;强制透明代理模式&lt;/strong&gt;：规则应该长期存在&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;健康检查回退模式&lt;/strong&gt;：规则会随 Xray 健康状态动态变化&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;114-开机自启是否符合预期&#34;&gt;11.4 开机自启是否符合预期&lt;/h3&gt;
+&lt;h3 id=&#34;104-开机自启是否符合预期&#34;&gt;10.4 开机自启是否符合预期&lt;/h3&gt;
 &lt;p&gt;如果你使用的是强制透明代理方案，检查：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray-iptables-apply.service --no-pager
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果你使用的是健康检查方案，检查：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray-iptables-healthcheck.timer --no-pager
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl list-timers --all &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep xray
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;115-出现异常时先看哪里&#34;&gt;11.5 出现异常时先看哪里&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;105-出现异常时先看哪里&#34;&gt;10.5 出现异常时先看哪里&lt;/h3&gt;
 &lt;p&gt;优先按这个顺序排查：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;sudo systemctl status xray --no-pager&lt;/code&gt;&lt;/li&gt;
@@ -709,7 +690,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;li&gt;&lt;code&gt;sudo iptables-save&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;curl -x socks5h://127.0.0.1:10808 https://api.ipify.org&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;12-相关文件位置&#34;&gt;12. 相关文件位置&lt;/h2&gt;
+&lt;h2 id=&#34;11-相关文件位置&#34;&gt;11. 相关文件位置&lt;/h2&gt;
 &lt;p&gt;当前工作区里和这份分享版笔记直接相关的文件有：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tmp/xray-config/xray-single-exit-template.json
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tmp/xray-config/xray-dual-exit-template.json
@@ -718,7 +699,9 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/home/claw1/.openclaw/workspace/tmp/xray-config/xray-single-exit-template.json
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/home/claw1/.openclaw/workspace/tmp/xray-config/xray-dual-exit-template.json
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/home/claw1/.openclaw/workspace/tmp/xray-config/Xray-iptables-notes.md
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;附录-a单出口配置模板&#34;&gt;附录 A：单出口配置模板&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a id=&#34;appendix-a&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;附录-a单出口配置模板&#34;&gt;附录 A：单出口配置模板&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;#section-55&#34; class=&#34;appendix-back-btn&#34;&gt;↑ 返回 §5.5 使用 nano 编辑配置文件&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;log&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;loglevel&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;warning&amp;#34;&lt;/span&gt;
@@ -854,7 +837,9 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;附录-b双出口配置模板&#34;&gt;附录 B：双出口配置模板&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a id=&#34;appendix-b&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;附录-b双出口配置模板&#34;&gt;附录 B：双出口配置模板&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;#section-55&#34; class=&#34;appendix-back-btn&#34;&gt;↑ 返回 §5.5 使用 nano 编辑配置文件&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;log&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;loglevel&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;warning&amp;#34;&lt;/span&gt;
@@ -1014,8 +999,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;附录-ciptables-bash-命令集中区&#34;&gt;附录 C：iptables Bash 命令集中区&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;说明：本附录内容与正文第 8、9 节重复，目的是提供“集中复制区”。正文原文保持不变。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;说明：本附录内容与正文第 8、9 节重复，目的是提供“集中复制区”。正文原文保持不变。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id=&#34;c1-强制透明代理apply-脚本&#34;&gt;C.1 强制透明代理：apply 脚本&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/usr/bin/env bash
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -e
@@ -1139,25 +1123,25 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
     
     <item>
       <title>画廊</title>
-      <link>http://192.168.2.179:1313/zh/gallery/</link>
+      <link>https://lewen-wangcc.github.io/zh/gallery/</link>
       <pubDate>Mon, 30 Dec 2024 10:00:00 +0800</pubDate>
-      <guid>http://192.168.2.179:1313/zh/gallery/</guid>
+      <guid>https://lewen-wangcc.github.io/zh/gallery/</guid>
       <description></description>
     </item>
     
     <item>
       <title>经历</title>
-      <link>http://192.168.2.179:1313/zh/experience/</link>
+      <link>https://lewen-wangcc.github.io/zh/experience/</link>
       <pubDate>Mon, 30 Dec 2024 10:00:00 +0800</pubDate>
-      <guid>http://192.168.2.179:1313/zh/experience/</guid>
+      <guid>https://lewen-wangcc.github.io/zh/experience/</guid>
       <description></description>
     </item>
     
     <item>
       <title>发表论文</title>
-      <link>http://192.168.2.179:1313/zh/publication/</link>
+      <link>https://lewen-wangcc.github.io/zh/publication/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://192.168.2.179:1313/zh/publication/</guid>
+      <guid>https://lewen-wangcc.github.io/zh/publication/</guid>
       <description></description>
     </item>
     

@@ -3,7 +3,7 @@
 <!-- Last Published: 2026年3月12日 --><html lang="zh-Hans" dir="ltr"
       data-wc-theme-default="system">
   
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,9 +44,9 @@
   <meta name="description" content="Academic site of Lewen Wang on computational and theoretical chemistry." />
 
   
-    <link rel="alternate" hreflang="en" href="http://192.168.2.179:1313/" />
+    <link rel="alternate" hreflang="en" href="https://lewen-wangcc.github.io/" />
   
-  <link rel="alternate" hreflang="zh-Hans" href="http://192.168.2.179:1313/zh/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://lewen-wangcc.github.io/zh/" />
 
   
   
@@ -132,6 +132,45 @@
 
 
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5FT9F48DR6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-5FT9F48DR6', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
 
 
 
@@ -162,10 +201,10 @@
   
 
   
-  <link rel="icon" type="image/png" href="/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_32x32_fill_lanczos_center_3.png" />
-  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_180x180_fill_lanczos_center_3.png" />
+  <link rel="icon" type="image/png" href="/media/icon_hu_5cac115d14ed3d49.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu_e7f327b39c12e7ca.png" />
 
-  <link rel="canonical" href="http://192.168.2.179:1313/zh/" />
+  <link rel="canonical" href="https://lewen-wangcc.github.io/zh/" />
 
   
   
@@ -188,10 +227,10 @@
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="王乐文" />
-  <meta property="og:url" content="http://192.168.2.179:1313/zh/" />
+  <meta property="og:url" content="https://lewen-wangcc.github.io/zh/" />
   <meta property="og:title" content="关于我 | 王乐文" />
-  <meta property="og:description" content="Academic site of Lewen Wang on computational and theoretical chemistry." /><meta property="og:image" content="http://192.168.2.179:1313/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_512x512_fill_lanczos_center_3.png" />
-    <meta property="twitter:image" content="http://192.168.2.179:1313/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="zh-Hans" />
+  <meta property="og:description" content="Academic site of Lewen Wang on computational and theoretical chemistry." /><meta property="og:image" content="https://lewen-wangcc.github.io/media/icon_hu_645fa481986063ef.png" />
+    <meta property="twitter:image" content="https://lewen-wangcc.github.io/media/icon_hu_645fa481986063ef.png" /><meta property="og:locale" content="zh-Hans" />
   
     
       <meta property="og:updated_time" content="2024-12-30T10:00:00&#43;08:00" />
@@ -203,7 +242,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite","url": "http://192.168.2.179:1313/"
+  "@type": "WebSite","url": "https://lewen-wangcc.github.io/"
 }
 </script>
 
@@ -769,8 +808,8 @@
   
   <script
     defer
-    src="/js/hugo-blox-zh.min.js"
-    integrity=""
+    src="/js/hugo-blox-zh.min.edad2a20315bced9792ec0d846aaf4ab2d7efe63957cb49983442d40c24349c5.js"
+    integrity="sha256-7a0qIDFbztl5LsDYRqr0qy1&#43;/mOVfLSZg0QtQMJDScU="
   ></script>
 
   
@@ -969,7 +1008,7 @@
       
         <li class="flex flex-col">
           <a
-            href="http://192.168.2.179:1313/"
+            href="https://lewen-wangcc.github.io/"
             class="relative cursor-pointer text-gray-800 dark:text-gray-100 hover:bg-primary-50 hover:text-primary-600 hover:dark:bg-primary-500/10 hover:dark:text-primary-200 whitespace-nowrap py-1.5 transition-colors ltr:pl-3 ltr:pr-9 rtl:pr-3 rtl:pl-9"
           >English</a>
         </li>
@@ -1107,7 +1146,7 @@
     <div class="w-full bg-white rounded dark:bg-gray-800">
       <div class="h-2/4 sm:h-64 overflow-hidden w-full">
         <img class="w-full object-cover"
-             src="/media/banner2_hud2e3e04c9b2d93a6148f47ba09c587ce_1533118_0x0_q80_h2__3.webp"
+             src="/media/banner2_hu_2c131c58e31d78b0.webp"
              width="1440" height="540"
              alt="" />
       </div>
@@ -1121,7 +1160,7 @@
 
   <div class="avatar-wrapper -mt-[105px]">
     
-    <img class="avatar rounded-full bg-white dark:bg-gray-800 p-1" src="/zh/author/%E7%8E%8B%E4%B9%90%E6%96%87/avatar_hu560724b413f2de7f3e1653bc21fb6bd4_445012_150x150_fill_lanczos_center_3.png" alt="王乐文"
+    <img class="avatar rounded-full bg-white dark:bg-gray-800 p-1" src="/zh/author/%E7%8E%8B%E4%B9%90%E6%96%87/avatar_hu_42fe3c91f228f72.png" alt="王乐文"
          width="150" height="150">
     <span class="avatar-emoji">🏸</span>
   </div>
@@ -1288,7 +1327,7 @@
   </div>
   <div class="font-bold">中文 (简体)</div>
   
-  <div><a href="http://192.168.2.179:1313/">English</a></div>
+  <div><a href="https://lewen-wangcc.github.io/">English</a></div>
   
 </div>
 

@@ -2,27 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>About Me | Lewen Wang</title>
-    <link>http://192.168.2.179:1313/</link>
-      <atom:link href="http://192.168.2.179:1313/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://lewen-wangcc.github.io/</link>
+      <atom:link href="https://lewen-wangcc.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>About Me</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Mon, 30 Dec 2024 10:00:00 +0800</lastBuildDate>
     <image>
-      <url>http://192.168.2.179:1313/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_512x512_fill_lanczos_center_3.png</url>
+      <url>https://lewen-wangcc.github.io/media/icon_hu_645fa481986063ef.png</url>
       <title>About Me</title>
-      <link>http://192.168.2.179:1313/</link>
+      <link>https://lewen-wangcc.github.io/</link>
     </image>
     
     <item>
       <title>Xray &#43; iptables installation and configuration notes</title>
-      <link>http://192.168.2.179:1313/blog/xray-iptables-notes/</link>
+      <link>https://lewen-wangcc.github.io/blog/xray-iptables-notes/</link>
       <pubDate>Thu, 12 Mar 2026 04:50:00 +0800</pubDate>
-      <guid>http://192.168.2.179:1313/blog/xray-iptables-notes/</guid>
+      <guid>https://lewen-wangcc.github.io/blog/xray-iptables-notes/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;This is a &lt;strong&gt;shareable&lt;/strong&gt; general-purpose note. It does not include any real nodes, UUIDs, public keys, passwords, or other private information.&lt;/p&gt;
 &lt;p&gt;All commands, scripts, and configuration examples are given in code blocks so they can be copied directly into Typora or any other Markdown reader.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Reminder:&lt;/strong&gt; the &lt;code&gt;iptables&lt;/code&gt;, &lt;code&gt;systemctl&lt;/code&gt;, &lt;code&gt;/usr/local/bin/&lt;/code&gt;, and &lt;code&gt;/etc/systemd/system/&lt;/code&gt; operations shown here all require &lt;code&gt;sudo&lt;/code&gt;. Before making changes, make sure you still have a recovery path such as SSH, console access, or another way back into the machine.&lt;/p&gt;
-&lt;p&gt;If you only want the practical path, start from &lt;strong&gt;Section 5&lt;/strong&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;If you only want the practical path, start from &lt;a href=&#34;#section-5&#34; class=&#34;appendix-back-btn&#34;&gt;↓ Section 5&lt;/a&gt;.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;1-what-is-this-architecture-doing&#34;&gt;1. What is this architecture doing?&lt;/h2&gt;
 &lt;p&gt;This note describes a common local traffic steering architecture:&lt;/p&gt;
 &lt;ul&gt;
@@ -81,7 +80,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 
 &lt;figure  &gt;
   &lt;div class=&#34;flex justify-center	&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;http://192.168.2.179:1313/media/blog/xray-iptables-architecture.jpg&#34; alt=&#34;Xray &amp;#43; iptables architecture&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://lewen-wangcc.github.io/media/blog/xray-iptables-architecture.jpg&#34; alt=&#34;Xray &amp;#43; iptables architecture&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;The diagram above gives a quick visual view of how the components relate to each other.&lt;/p&gt;
@@ -90,13 +89,13 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;p&gt;This note follows the same sequence as the source document:&lt;/p&gt;
 &lt;ol start=&#34;5&#34;&gt;
 &lt;li&gt;&lt;strong&gt;Complete Xray installation and configuration flow&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Xray commands and troubleshooting&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;iptables configuration flow&lt;/strong&gt;
 &lt;ul&gt;
 &lt;li&gt;Case 1: forced transparent proxying, no condition check&lt;/li&gt;
 &lt;li&gt;Case 2: Xray health check to avoid a total network outage&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reference and troubleshooting commands&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Appendices&lt;/strong&gt;
 &lt;ul&gt;
 &lt;li&gt;Appendix A: single-exit configuration template&lt;/li&gt;
@@ -118,6 +117,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/li&gt;
 &lt;li&gt;Then configure &lt;code&gt;systemd&lt;/code&gt; startup.&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;&lt;a id=&#34;section-5&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;5-xray-installation-and-configuration-flow&#34;&gt;5. Xray installation and configuration flow&lt;/h2&gt;
 &lt;h3 id=&#34;51-what-is-xray-doing-here&#34;&gt;5.1 What is Xray doing here?&lt;/h3&gt;
 &lt;p&gt;In this architecture, Xray is responsible for:&lt;/p&gt;
@@ -133,8 +133,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Install Xray (must use sudo, and keep the whole command on one line)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo bash -c &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; @ install
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Do not move &lt;code&gt;@ install&lt;/code&gt; onto the next line, or the shell may treat it as a separate &lt;code&gt;install&lt;/code&gt; command.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;Do not move &lt;code&gt;@ install&lt;/code&gt; onto the next line, or the shell may treat it as a separate &lt;code&gt;install&lt;/code&gt; command.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id=&#34;53-check-whether-installation-succeeded&#34;&gt;5.3 Check whether installation succeeded&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Show Xray version&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/usr/local/bin/xray version
@@ -147,47 +146,44 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Expected example output:&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-rw-r--r-- 1 root root 1234 ... /usr/local/etc/xray/config.json
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the file does not exist yet, you can create it manually in the next step.&lt;/p&gt;
-&lt;h3 id=&#34;55-choose-a-configuration-type&#34;&gt;5.5 Choose a configuration type&lt;/h3&gt;
-&lt;p&gt;The templates here are the base skeletons for generating &lt;code&gt;config.json&lt;/code&gt;. They determine where different traffic types eventually go.&lt;/p&gt;
+&lt;p&gt;&lt;a id=”section-55”&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;55-edit-the-configuration-with-nano&#34;&gt;5.5 Edit the configuration with nano&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Edit the Xray configuration file with nano&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /usr/local/etc/xray/config.json
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The templates here are the base skeletons for generating &lt;code&gt;config.json&lt;/code&gt;. They determine where different traffic types eventually go.&lt;/p&gt;
 &lt;p&gt;If your requirement is:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;OpenAI / ChatGPT / Codex / GPT related traffic goes through &lt;strong&gt;node 1&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;all other traffic goes &lt;strong&gt;direct&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;use:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Appendix A: single-exit configuration template
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If your requirement is:&lt;/p&gt;
+&lt;p&gt;use: &lt;a href=”#appendix-a” class=”appendix-back-btn”&gt;↓ Appendix A: single-exit configuration template&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If your requirement is:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;OpenAI / ChatGPT / Codex / GPT related traffic goes through &lt;strong&gt;node 1&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;all other traffic goes through &lt;strong&gt;node 2&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;use:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Appendix B: dual-exit configuration template
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Practical note: if you do not want to fill every field by hand, you can give “one or more proxy node links + the template you want” to a commercial model to generate a first draft of &lt;code&gt;config.json&lt;/code&gt;, and then validate it yourself locally. To reduce sensitive-data trace risk, temporary chats or one-off sessions are safer for that step.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;56-edit-the-configuration-with-nano&#34;&gt;5.6 Edit the configuration with nano&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Edit the Xray configuration file with nano&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /usr/local/etc/xray/config.json
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Paste the full template you chose, then replace the placeholders with your own values.&lt;/p&gt;
-&lt;h4 id=&#34;561-save-and-exit-in-nano&#34;&gt;5.6.1 Save and exit in nano&lt;/h4&gt;
+&lt;p&gt;use: &lt;a href=”#appendix-b” class=”appendix-back-btn”&gt;↓ Appendix B: dual-exit configuration template&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Practical note: if you do not want to fill every field by hand, you can give “one or more proxy node links + the template you want” to a commercial model to generate a first draft of &lt;code&gt;config.json&lt;/code&gt;, and then validate it yourself locally. To reduce sensitive-data trace risk, temporary chats or one-off sessions are safer for that step.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Paste the full template you chose, then replace the placeholders with your own values.&lt;/p&gt;
+&lt;h4 id=&#34;551-save-and-exit-in-nano&#34;&gt;5.5.1 Save and exit in nano&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ctrl + O   -&amp;gt; write file
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Enter      -&amp;gt; confirm file name
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ctrl + X   -&amp;gt; exit nano
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you want to quit without saving:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ctrl + X
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;press N
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;562-reference-docs&#34;&gt;5.6.2 Reference docs&lt;/h4&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;552-reference-docs&#34;&gt;5.5.2 Reference docs&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://www.nano-editor.org/docs.php
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://xtls.github.io/config/
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;57-test-the-config-syntax&#34;&gt;5.7 Test the config syntax&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;56-test-the-config-syntax&#34;&gt;5.6 Test the config syntax&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Check whether Xray can parse the config correctly&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo /usr/local/bin/xray run -test -config /usr/local/etc/xray/config.json
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Expected example output:&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Xray 1.x.x ...
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Configuration OK.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If this step fails, do not start the service yet. Go back and fix the config first.&lt;/p&gt;
-&lt;h3 id=&#34;58-enable-and-start-xray&#34;&gt;5.8 Enable and start Xray&lt;/h3&gt;
+&lt;h3 id=&#34;57-enable-and-start-xray&#34;&gt;5.7 Enable and start Xray&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Reload systemd configuration&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl daemon-reload
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -206,7 +202,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you see:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Active: failed
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;then the configuration or startup parameters still need troubleshooting.&lt;/p&gt;
-&lt;h3 id=&#34;59-check-whether-the-listening-ports-are-correct&#34;&gt;5.9 Check whether the listening ports are correct&lt;/h3&gt;
+&lt;h3 id=&#34;58-check-whether-the-listening-ports-are-correct&#34;&gt;5.8 Check whether the listening ports are correct&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Check whether transparent proxy, SOCKS, and HTTP inbounds are listening&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -ltnup &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -E &lt;span class=&#34;s1&#34;&gt;&amp;#39;12345|10808|10809&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Expected example output:&lt;/strong&gt;&lt;/p&gt;
@@ -221,42 +217,8 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;li&gt;&lt;code&gt;10809&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Once those appear, the Xray installation and configuration flow is done.&lt;/p&gt;
-&lt;h2 id=&#34;6-xray-commands-and-troubleshooting-information&#34;&gt;6. Xray commands and troubleshooting information&lt;/h2&gt;
-&lt;p&gt;This section is not the main setup path anymore. It is the set of commands you will commonly use after installation.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Start Xray&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl start xray
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Stop Xray&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl stop xray
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Restart Xray&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl restart xray
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Try to reload config (if the service supports reload)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl reload xray
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Enable on boot&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; xray
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Disable on boot&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl disable xray
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Check Xray service status&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray --no-pager -n &lt;span class=&#34;m&#34;&gt;50&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Show the latest 100 lines of Xray logs&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl -u xray -n &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt; --no-pager
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Follow Xray logs in real time&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl -u xray -f
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Check whether key ports are listening&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -ltnup &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -E &lt;span class=&#34;s1&#34;&gt;&amp;#39;12345|10808|10809&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Query egress IP through SOCKS proxy&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Query egress IP through HTTP proxy&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x http://127.0.0.1:10809 https://api.ipify.org
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;7-iptables-configuration-flow&#34;&gt;7. iptables configuration flow&lt;/h2&gt;
-&lt;h3 id=&#34;71-what-is-iptables-doing-here&#34;&gt;7.1 What is iptables doing here?&lt;/h3&gt;
+&lt;h2 id=&#34;6-iptables-configuration-flow&#34;&gt;6. iptables configuration flow&lt;/h2&gt;
+&lt;h3 id=&#34;61-what-is-iptables-doing-here&#34;&gt;6.1 What is iptables doing here?&lt;/h3&gt;
 &lt;p&gt;In this architecture, iptables is responsible for:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;intercepting locally generated traffic,&lt;/li&gt;
@@ -266,7 +228,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;p&gt;In one sentence:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Xray decides where traffic should go, and iptables decides which traffic enters Xray first.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is where transparent proxy rules begin. There are two cases.&lt;/p&gt;
-&lt;h2 id=&#34;8-case-1-forced-transparent-proxying-with-no-condition-checks&#34;&gt;8. Case 1: forced transparent proxying, with no condition checks&lt;/h2&gt;
+&lt;h2 id=&#34;7-case-1-forced-transparent-proxying-with-no-condition-checks&#34;&gt;7. Case 1: forced transparent proxying, with no condition checks&lt;/h2&gt;
 &lt;p&gt;If your requirement is:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;all external TCP traffic must be redirected into Xray,&lt;/li&gt;
@@ -274,7 +236,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;li&gt;you do not need automatic fallback to direct access,&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;then you can use the following &lt;strong&gt;forced transparent proxy&lt;/strong&gt; rule set.&lt;/p&gt;
-&lt;h3 id=&#34;81-write-the-script-with-nano&#34;&gt;8.1 Write the script with nano&lt;/h3&gt;
+&lt;h3 id=&#34;71-write-the-script-with-nano&#34;&gt;7.1 Write the script with nano&lt;/h3&gt;
 &lt;p&gt;Create the script file first:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /usr/local/bin/xray-iptables-apply.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Paste the following content in full:&lt;/p&gt;
@@ -325,13 +287,13 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Redirect all remaining TCP traffic to Xray transparent inbound 12345&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables -t nat -A XRAY -p tcp -j REDIRECT --to-ports &lt;span class=&#34;m&#34;&gt;12345&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;82-make-the-script-executable-and-run-it&#34;&gt;8.2 Make the script executable and run it&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;72-make-the-script-executable-and-run-it&#34;&gt;7.2 Make the script executable and run it&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Make it executable&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo chmod +x /usr/local/bin/xray-iptables-apply.sh
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Run the script&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo /usr/local/bin/xray-iptables-apply.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;83-what-you-should-see-after-applying-the-rules&#34;&gt;8.3 What you should see after applying the rules&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;73-what-you-should-see-after-applying-the-rules&#34;&gt;7.3 What you should see after applying the rules&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Export the current iptables rules&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables-save
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Expected example output:&lt;/strong&gt;&lt;/p&gt;
@@ -351,7 +313,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;li&gt;&lt;code&gt;-A XRAY -p tcp -j REDIRECT --to-ports 12345&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;-A OUTPUT -p udp --dport 443 -j REJECT ...&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;84-how-to-verify-that-transparent-proxying-is-actually-working&#34;&gt;8.4 How to verify that transparent proxying is actually working&lt;/h3&gt;
+&lt;h3 id=&#34;74-how-to-verify-that-transparent-proxying-is-actually-working&#34;&gt;7.4 How to verify that transparent proxying is actually working&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 1) Confirm Xray ports are still listening&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -ltnup &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -E &lt;span class=&#34;s1&#34;&gt;&amp;#39;12345|10808|10809&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -375,7 +337,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;li&gt;whether routing rules are sending traffic into a bad outbound,&lt;/li&gt;
 &lt;li&gt;whether the host itself can reach the network directly.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;85-teardown-script&#34;&gt;8.5 Teardown script&lt;/h3&gt;
+&lt;h3 id=&#34;75-teardown-script&#34;&gt;7.5 Teardown script&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /usr/local/bin/xray-iptables-teardown.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Put the following content into it:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/usr/bin/env bash
@@ -397,7 +359,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo chmod +x /usr/local/bin/xray-iptables-teardown.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Run it when you want to restore direct access:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo /usr/local/bin/xray-iptables-teardown.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;86-what-you-should-see-after-teardown&#34;&gt;8.6 What you should see after teardown&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;76-what-you-should-see-after-teardown&#34;&gt;7.6 What you should see after teardown&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Export current iptables rules again&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables-save
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Expected example output:&lt;/strong&gt;&lt;/p&gt;
@@ -413,14 +375,14 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;:POSTROUTING ACCEPT [0:0]
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;COMMIT
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That means the &lt;code&gt;XRAY&lt;/code&gt; chain and its related jump rules should be gone.&lt;/p&gt;
-&lt;h3 id=&#34;87-make-it-start-automatically-on-boot-for-the-forced-mode&#34;&gt;8.7 Make it start automatically on boot (for the forced mode)&lt;/h3&gt;
+&lt;h3 id=&#34;77-make-it-start-automatically-on-boot-for-the-forced-mode&#34;&gt;7.7 Make it start automatically on boot (for the forced mode)&lt;/h3&gt;
 &lt;p&gt;If you choose the forced transparent proxy mode, running the script once manually is not enough, because the iptables rules usually will not survive a reboot.&lt;/p&gt;
 &lt;p&gt;A direct way to handle this is:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;let the Xray service start on boot,&lt;/li&gt;
 &lt;li&gt;create an extra &lt;code&gt;systemd&lt;/code&gt; service that runs &lt;code&gt;xray-iptables-apply.sh&lt;/code&gt; after boot.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;871-create-a-systemd-service&#34;&gt;8.7.1 Create a systemd service&lt;/h4&gt;
+&lt;h4 id=&#34;771-create-a-systemd-service&#34;&gt;7.7.1 Create a systemd service&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /etc/systemd/system/xray-iptables-apply.service
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;Apply Xray iptables redirect rules&lt;/span&gt;
@@ -435,7 +397,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Install]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;multi-user.target&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;872-enable-automatic-startup&#34;&gt;8.7.2 Enable automatic startup&lt;/h4&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;772-enable-automatic-startup&#34;&gt;7.7.2 Enable automatic startup&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Reload systemd configuration&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl daemon-reload
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -444,18 +406,18 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Enable the iptables rule service&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; --now xray-iptables-apply.service
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;873-check-service-status&#34;&gt;8.7.3 Check service status&lt;/h4&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;773-check-service-status&#34;&gt;7.7.3 Check service status&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray --no-pager
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray-iptables-apply.service --no-pager
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If everything is correct, you should see:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;xray.service: active (running)
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;xray-iptables-apply.service: active (exited)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;active (exited)&lt;/code&gt; is normal here because the service only runs a script once and does not stay resident.&lt;/p&gt;
-&lt;h4 id=&#34;874-if-you-want-to-disable-it-later&#34;&gt;8.7.4 If you want to disable it later&lt;/h4&gt;
+&lt;h4 id=&#34;774-if-you-want-to-disable-it-later&#34;&gt;7.7.4 If you want to disable it later&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl disable --now xray-iptables-apply.service
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then run the teardown script to go back to direct mode:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo /usr/local/bin/xray-iptables-teardown.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;9-case-2-check-whether-xray-is-healthy-and-avoid-a-total-network-outage-when-it-is-not&#34;&gt;9. Case 2: check whether Xray is healthy and avoid a total network outage when it is not&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;8-case-2-check-whether-xray-is-healthy-and-avoid-a-total-network-outage-when-it-is-not&#34;&gt;8. Case 2: check whether Xray is healthy and avoid a total network outage when it is not&lt;/h2&gt;
 &lt;p&gt;If your requirement is:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;traffic should be transparently proxied while Xray is healthy,&lt;/li&gt;
@@ -469,7 +431,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;li&gt;Xray healthy -&amp;gt; apply proxy rules&lt;/li&gt;
 &lt;li&gt;Xray unhealthy -&amp;gt; remove proxy rules and return to direct mode&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;91-write-the-health-check-script-with-nano&#34;&gt;9.1 Write the health-check script with nano&lt;/h3&gt;
+&lt;h3 id=&#34;81-write-the-health-check-script-with-nano&#34;&gt;8.1 Write the health-check script with nano&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /usr/local/bin/xray-iptables-healthcheck.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Paste the following content:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/usr/bin/env bash
@@ -562,19 +524,19 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Xray unhealthy -&amp;gt; switch to direct mode&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  apply_direct_rules
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;92-make-the-health-check-script-executable-and-test-it-once-manually&#34;&gt;9.2 Make the health-check script executable and test it once manually&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;82-make-the-health-check-script-executable-and-test-it-once-manually&#34;&gt;8.2 Make the health-check script executable and test it once manually&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Make it executable&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo chmod +x /usr/local/bin/xray-iptables-healthcheck.sh
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Run it once manually to confirm there is no syntax or permission issue&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo /usr/local/bin/xray-iptables-healthcheck.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;93-run-the-health-check-script-periodically-with-systemd&#34;&gt;9.3 Run the health-check script periodically with systemd&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;83-run-the-health-check-script-periodically-with-systemd&#34;&gt;8.3 Run the health-check script periodically with systemd&lt;/h3&gt;
 &lt;p&gt;After this is set up, systemd will run the health-check script once per minute:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;if Xray is healthy, proxy rules stay applied,&lt;/li&gt;
 &lt;li&gt;if Xray is unhealthy, rules are switched back toward direct mode.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;931-create-the-systemd-service&#34;&gt;9.3.1 Create the systemd service&lt;/h4&gt;
+&lt;h4 id=&#34;831-create-the-systemd-service&#34;&gt;8.3.1 Create the systemd service&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /etc/systemd/system/xray-iptables-healthcheck.service
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;Xray iptables healthcheck&lt;/span&gt;
@@ -583,7 +545,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Service]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;Type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;oneshot&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;ExecStart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;/usr/local/bin/xray-iptables-healthcheck.sh&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;932-create-the-systemd-timer&#34;&gt;9.3.2 Create the systemd timer&lt;/h4&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;832-create-the-systemd-timer&#34;&gt;8.3.2 Create the systemd timer&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /etc/systemd/system/xray-iptables-healthcheck.timer
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;Run Xray iptables healthcheck every minute&lt;/span&gt;
@@ -595,7 +557,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Install]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;timers.target&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;933-enable-the-timer&#34;&gt;9.3.3 Enable the timer&lt;/h4&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;833-enable-the-timer&#34;&gt;8.3.3 Enable the timer&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Reload systemd configuration&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl daemon-reload
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -609,7 +571,50 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl list-timers --all &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep xray
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Expected example output:&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;... xray-iptables-healthcheck.timer loaded active waiting ...
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;94-useful-health-check-commands-run-these-after-enabling-the-timer&#34;&gt;9.4 Useful health-check commands (run these after enabling the timer)&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;9-reference-and-troubleshooting-commands&#34;&gt;9. Reference and troubleshooting commands&lt;/h2&gt;
+&lt;h3 id=&#34;91-xray-service-commands&#34;&gt;9.1 Xray service commands&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Start Xray&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl start xray
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Stop Xray&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl stop xray
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Restart Xray&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl restart xray
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Try to reload config (if the service supports reload)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl reload xray
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Enable on boot&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; xray
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Disable on boot&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl disable xray
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Check Xray service status&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray --no-pager -n &lt;span class=&#34;m&#34;&gt;50&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;92-logs-ports-and-connection-tests&#34;&gt;9.2 Logs, ports, and connection tests&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Show the latest 100 lines of Xray logs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl -u xray -n &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt; --no-pager
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Follow Xray logs in real time&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl -u xray -f
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Check key listening ports&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -ltnup &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -E &lt;span class=&#34;s1&#34;&gt;&amp;#39;12345|10808|10809&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Export current iptables rules&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables-save
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Show nft backend rules&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nft list ruleset
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Query egress IP via SOCKS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Query egress IP via HTTP&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x http://127.0.0.1:10809 https://api.ipify.org
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;93-health-check-timer-commands-run-after-enabling-the-timer&#34;&gt;9.3 Health-check timer commands (run after enabling the timer)&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;1) Check whether xray is running normally&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl is-active xray
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Expected when healthy:&lt;/p&gt;
@@ -643,32 +648,8 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;li&gt;the healthcheck service exits with &lt;code&gt;status=1/FAILURE&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;the jump / UDP / redirect counts are not what you expect, for example duplicates greater than &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;10-other-useful-troubleshooting-commands&#34;&gt;10. Other useful troubleshooting commands&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Check current Xray status&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray --no-pager -n &lt;span class=&#34;m&#34;&gt;50&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Show recent Xray logs&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl -u xray -n &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt; --no-pager
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Follow Xray logs in real time&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl -u xray -f
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Check key listening ports&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -ltnup &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -E &lt;span class=&#34;s1&#34;&gt;&amp;#39;12345|10808|10809&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Export current iptables rules&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables-save
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Show nft backend rules&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nft list ruleset
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Query egress IP via SOCKS&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Query egress IP via HTTP&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x http://127.0.0.1:10809 https://api.ipify.org
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;11-final-checklist&#34;&gt;11. Final checklist&lt;/h2&gt;
-&lt;h3 id=&#34;111-is-the-xray-service-itself-healthy&#34;&gt;11.1 Is the Xray service itself healthy?&lt;/h3&gt;
+&lt;h2 id=&#34;10-final-checklist&#34;&gt;10. Final checklist&lt;/h2&gt;
+&lt;h3 id=&#34;101-is-the-xray-service-itself-healthy&#34;&gt;10.1 Is the Xray service itself healthy?&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray --no-pager
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -ltnup &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -E &lt;span class=&#34;s1&#34;&gt;&amp;#39;12345|10808|10809&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should at least see:&lt;/p&gt;
@@ -676,7 +657,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;li&gt;&lt;code&gt;xray.service&lt;/code&gt; as &lt;code&gt;active (running)&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;12345 / 10808 / 10809&lt;/code&gt; listening&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;112-does-the-proxy-egress-match-expectations&#34;&gt;11.2 Does the proxy egress match expectations?&lt;/h3&gt;
+&lt;h3 id=&#34;102-does-the-proxy-egress-match-expectations&#34;&gt;10.2 Does the proxy egress match expectations?&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -x http://127.0.0.1:10809 https://api.ipify.org
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the IP is wrong here, check:&lt;/p&gt;
@@ -685,20 +666,20 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;li&gt;whether routing sends traffic to the wrong outbound,&lt;/li&gt;
 &lt;li&gt;whether the node itself is usable.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;113-do-the-iptables-rules-match-the-mode-you-chose&#34;&gt;11.3 Do the iptables rules match the mode you chose?&lt;/h3&gt;
+&lt;h3 id=&#34;103-do-the-iptables-rules-match-the-mode-you-chose&#34;&gt;10.3 Do the iptables rules match the mode you chose?&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables-save
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You need to confirm which mode you are in:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;forced transparent proxy mode&lt;/strong&gt;: rules should stay present,&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;health-check fallback mode&lt;/strong&gt;: rules should change with Xray health.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;114-does-startup-behavior-match-expectations&#34;&gt;11.4 Does startup behavior match expectations?&lt;/h3&gt;
+&lt;h3 id=&#34;104-does-startup-behavior-match-expectations&#34;&gt;10.4 Does startup behavior match expectations?&lt;/h3&gt;
 &lt;p&gt;If you use the forced mode, check:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray-iptables-apply.service --no-pager
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you use the health-check mode, check:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status xray-iptables-healthcheck.timer --no-pager
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl list-timers --all &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep xray
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;115-where-should-you-look-first-when-something-breaks&#34;&gt;11.5 Where should you look first when something breaks?&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;105-where-should-you-look-first-when-something-breaks&#34;&gt;10.5 Where should you look first when something breaks?&lt;/h3&gt;
 &lt;p&gt;Check in this order first:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;sudo systemctl status xray --no-pager&lt;/code&gt;&lt;/li&gt;
@@ -707,7 +688,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;li&gt;&lt;code&gt;sudo iptables-save&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;curl -x socks5h://127.0.0.1:10808 https://api.ipify.org&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;12-related-file-locations&#34;&gt;12. Related file locations&lt;/h2&gt;
+&lt;h2 id=&#34;11-related-file-locations&#34;&gt;11. Related file locations&lt;/h2&gt;
 &lt;p&gt;The files directly related to this shareable note in the workspace are:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tmp/xray-config/xray-single-exit-template.json
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tmp/xray-config/xray-dual-exit-template.json
@@ -716,7 +697,9 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/home/claw1/.openclaw/workspace/tmp/xray-config/xray-single-exit-template.json
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/home/claw1/.openclaw/workspace/tmp/xray-config/xray-dual-exit-template.json
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/home/claw1/.openclaw/workspace/tmp/xray-config/Xray-iptables-notes.md
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;appendix-a-single-exit-configuration-template&#34;&gt;Appendix A: single-exit configuration template&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a id=&#34;appendix-a&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;appendix-a-single-exit-configuration-template&#34;&gt;Appendix A: single-exit configuration template&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;#section-55&#34; class=&#34;appendix-back-btn&#34;&gt;↑ Back to §5.5 Edit the configuration with nano&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;log&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;loglevel&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;warning&amp;#34;&lt;/span&gt;
@@ -852,7 +835,9 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;appendix-b-dual-exit-configuration-template&#34;&gt;Appendix B: dual-exit configuration template&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a id=&#34;appendix-b&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;appendix-b-dual-exit-configuration-template&#34;&gt;Appendix B: dual-exit configuration template&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;#section-55&#34; class=&#34;appendix-back-btn&#34;&gt;↑ Back to §5.5 Edit the configuration with nano&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;log&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;loglevel&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;warning&amp;#34;&lt;/span&gt;
@@ -1012,8 +997,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;appendix-c-consolidated-iptables-bash-command-area&#34;&gt;Appendix C: consolidated iptables Bash command area&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;This appendix intentionally duplicates Sections 8 and 9 so the commands can be copied from one place.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;This appendix intentionally duplicates Sections 8 and 9 so the commands can be copied from one place.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id=&#34;c1-forced-transparent-proxy-apply-script&#34;&gt;C.1 Forced transparent proxy: apply script&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/usr/bin/env bash
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -e
@@ -1134,25 +1118,25 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
     
     <item>
       <title>Experience</title>
-      <link>http://192.168.2.179:1313/experience/</link>
+      <link>https://lewen-wangcc.github.io/experience/</link>
       <pubDate>Mon, 30 Dec 2024 10:00:00 +0800</pubDate>
-      <guid>http://192.168.2.179:1313/experience/</guid>
+      <guid>https://lewen-wangcc.github.io/experience/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Gallery</title>
-      <link>http://192.168.2.179:1313/gallery/</link>
+      <link>https://lewen-wangcc.github.io/gallery/</link>
       <pubDate>Mon, 30 Dec 2024 10:00:00 +0800</pubDate>
-      <guid>http://192.168.2.179:1313/gallery/</guid>
+      <guid>https://lewen-wangcc.github.io/gallery/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Publications</title>
-      <link>http://192.168.2.179:1313/publication/</link>
+      <link>https://lewen-wangcc.github.io/publication/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://192.168.2.179:1313/publication/</guid>
+      <guid>https://lewen-wangcc.github.io/publication/</guid>
       <description></description>
     </item>
     

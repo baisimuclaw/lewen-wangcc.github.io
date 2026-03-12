@@ -3,7 +3,7 @@
 <!-- Last Published: March 12, 2026 --><html lang="en-us" dir="ltr"
       data-wc-theme-default="system">
   
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -41,12 +41,12 @@
   
     
   
-  <meta name="description" content="A fuller English rewrite that stays close to the original notes, restoring section hierarchy, config templates, and iptables scripts." />
+  <meta name="description" content="Step-by-step notes covering Xray installation, config.json setup, and transparent proxying with iptables — including forced-proxy mode, health-check fallback, and systemd startup." />
 
   
-    <link rel="alternate" hreflang="zh" href="http://192.168.2.179:1313/zh/blog/xray-iptables-notes/" />
+    <link rel="alternate" hreflang="zh" href="https://lewen-wangcc.github.io/zh/blog/xray-iptables-notes/" />
   
-  <link rel="alternate" hreflang="en-us" href="http://192.168.2.179:1313/blog/xray-iptables-notes/" />
+  <link rel="alternate" hreflang="en-us" href="https://lewen-wangcc.github.io/blog/xray-iptables-notes/" />
 
   
   
@@ -132,6 +132,45 @@
 
 
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5FT9F48DR6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-5FT9F48DR6', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
 
 
 
@@ -160,10 +199,10 @@
   
 
   
-  <link rel="icon" type="image/png" href="/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_32x32_fill_lanczos_center_3.png" />
-  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_180x180_fill_lanczos_center_3.png" />
+  <link rel="icon" type="image/png" href="/media/icon_hu_5cac115d14ed3d49.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu_e7f327b39c12e7ca.png" />
 
-  <link rel="canonical" href="http://192.168.2.179:1313/blog/xray-iptables-notes/" />
+  <link rel="canonical" href="https://lewen-wangcc.github.io/blog/xray-iptables-notes/" />
 
   
   
@@ -186,10 +225,10 @@
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="Lewen Wang" />
-  <meta property="og:url" content="http://192.168.2.179:1313/blog/xray-iptables-notes/" />
+  <meta property="og:url" content="https://lewen-wangcc.github.io/blog/xray-iptables-notes/" />
   <meta property="og:title" content="Xray &#43; iptables installation and configuration notes | Lewen Wang" />
-  <meta property="og:description" content="A fuller English rewrite that stays close to the original notes, restoring section hierarchy, config templates, and iptables scripts." /><meta property="og:image" content="http://192.168.2.179:1313/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_512x512_fill_lanczos_center_3.png" />
-    <meta property="twitter:image" content="http://192.168.2.179:1313/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="Step-by-step notes covering Xray installation, config.json setup, and transparent proxying with iptables — including forced-proxy mode, health-check fallback, and systemd startup." /><meta property="og:image" content="https://lewen-wangcc.github.io/media/icon_hu_645fa481986063ef.png" />
+    <meta property="twitter:image" content="https://lewen-wangcc.github.io/media/icon_hu_645fa481986063ef.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
@@ -221,7 +260,7 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://192.168.2.179:1313/blog/xray-iptables-notes/"
+    "@id": "https://lewen-wangcc.github.io/blog/xray-iptables-notes/"
   },
   "headline": "Xray + iptables installation and configuration notes",
   
@@ -238,10 +277,10 @@
     "name": "Hong Kong Baptist University",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://192.168.2.179:1313/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_192x192_fill_lanczos_center_3.png"
+      "url": "https://lewen-wangcc.github.io/media/icon_hu_1df060215326dd50.png"
     }
   },
-  "description": "A fuller English rewrite that stays close to the original notes, restoring section hierarchy, config templates, and iptables scripts."
+  "description": "Step-by-step notes covering Xray installation, config.json setup, and transparent proxying with iptables — including forced-proxy mode, health-check fallback, and systemd startup."
 }
 </script>
 
@@ -808,8 +847,8 @@
   
   <script
     defer
-    src="/js/hugo-blox-en.min.js"
-    integrity=""
+    src="/js/hugo-blox-en.min.e5fa931947cac2d947732ea37a770aae2b5bd4a50b6048060cd129b46159a06d.js"
+    integrity="sha256-5fqTGUfKwtlHcy6jencKritb1KULYEgGDNEptGFZoG0="
   ></script>
 
   
@@ -1008,7 +1047,7 @@
       
         <li class="flex flex-col">
           <a
-            href="http://192.168.2.179:1313/zh/blog/xray-iptables-notes/"
+            href="https://lewen-wangcc.github.io/zh/blog/xray-iptables-notes/"
             class="relative cursor-pointer text-gray-800 dark:text-gray-100 hover:bg-primary-50 hover:text-primary-600 hover:dark:bg-primary-500/10 hover:dark:text-primary-200 whitespace-nowrap py-1.5 transition-colors ltr:pl-3 ltr:pr-9 rtl:pr-3 rtl:pl-9"
           >中文 (简体)</a>
         </li>
@@ -1134,14 +1173,14 @@
     margin: 1.45rem 0;
     padding: 1.1rem 1.15rem;
     border-radius: 16px;
-    border: 1px solid rgba(15, 23, 42, 0.12);
-    background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 12px 28px rgba(15, 23, 42, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    background: #f6f8fa;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.06);
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
-    scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
   }
   .blog-single-content .highlight::before,
   .blog-single-content > pre::before,
@@ -1154,7 +1193,7 @@
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(191, 219, 254, 0.78);
+    color: rgba(87, 96, 106, 0.75);
   }
   .blog-single-content .highlight pre,
   .blog-single-content pre {
@@ -1162,7 +1201,7 @@
     padding: 0;
     background: transparent;
     border: 0;
-    color: #e5eefb;
+    color: #24292e;
     font-size: 0.94rem;
     line-height: 1.75;
     white-space: pre;
@@ -1182,14 +1221,16 @@
     overflow-wrap: normal;
   }
   .blog-single-content .highlight .chroma {
-    color: #c9d1d9;
+    color: #24292e;
   }
   .blog-single-content .highlight .chroma .k,
+  .blog-single-content .highlight .chroma .kc,
   .blog-single-content .highlight .chroma .kd,
   .blog-single-content .highlight .chroma .kn,
+  .blog-single-content .highlight .chroma .kp,
   .blog-single-content .highlight .chroma .kr,
   .blog-single-content .highlight .chroma .kt {
-    color: #ff7b72;
+    color: #d73a49;
   }
   .blog-single-content .highlight .chroma .s,
   .blog-single-content .highlight .chroma .s1,
@@ -1204,7 +1245,7 @@
   .blog-single-content .highlight .chroma .sx,
   .blog-single-content .highlight .chroma .sr,
   .blog-single-content .highlight .chroma .ss {
-    color: #a5d6ff;
+    color: #032f62;
   }
   .blog-single-content .highlight .chroma .m,
   .blog-single-content .highlight .chroma .mf,
@@ -1214,7 +1255,7 @@
   .blog-single-content .highlight .chroma .mo,
   .blog-single-content .highlight .chroma .mb,
   .blog-single-content .highlight .chroma .mx {
-    color: #79c0ff;
+    color: #005cc5;
   }
   .blog-single-content .highlight .chroma .na,
   .blog-single-content .highlight .chroma .nb,
@@ -1229,12 +1270,12 @@
   .blog-single-content .highlight .chroma .vc,
   .blog-single-content .highlight .chroma .vg,
   .blog-single-content .highlight .chroma .vi {
-    color: #d2a8ff;
+    color: #6f42c1;
   }
   .blog-single-content .highlight .chroma .o,
   .blog-single-content .highlight .chroma .ow,
   .blog-single-content .highlight .chroma .p {
-    color: #c9d1d9;
+    color: #24292e;
   }
   .blog-single-content .highlight .chroma .c,
   .blog-single-content .highlight .chroma .ch,
@@ -1243,22 +1284,22 @@
   .blog-single-content .highlight .chroma .cs,
   .blog-single-content .highlight .chroma .cp,
   .blog-single-content .highlight .chroma .cpf {
-    color: #8b949e;
+    color: #6a737d;
     font-style: italic;
   }
   .blog-single-content .highlight .lnt,
   .blog-single-content .highlight .ln,
   .blog-single-content .highlight .lntd:first-child {
-    color: rgba(176, 195, 219, 0.72) !important;
+    color: rgba(87, 96, 106, 0.5) !important;
   }
   .blog-single-content .code-copy-btn {
     position: absolute;
     top: 0.72rem;
     right: 0.72rem;
     z-index: 2;
-    border: 1px solid rgba(147, 197, 253, 0.66);
-    background: rgba(219, 234, 254, 0.95);
-    color: #0f3a8a;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    background: #ffffff;
+    color: #424a53;
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -1266,27 +1307,14 @@
     padding: 0.25rem 0.62rem;
     line-height: 1;
     cursor: pointer;
-    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.22);
-    transition: all 0.18s ease;
-  }
-  .blog-single-content .code-copy-btn:hover {
-    background: #eff6ff;
-    border-color: rgba(96, 165, 250, 0.9);
-    color: #1d4ed8;
-    transform: translateY(-1px);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.18s ease, border-color 0.18s ease;
   }
   .blog-single-content .code-copy-btn[data-copy-state='copied'] {
     pointer-events: none;
-    transform: none;
-    background: #dbeafe;
-    border-color: rgba(96, 165, 250, 0.86);
-    color: #1d4ed8;
-  }
-  .blog-single-content .code-copy-btn[data-copy-state='copied']:hover {
-    transform: none;
-    background: #dbeafe;
-    border-color: rgba(96, 165, 250, 0.86);
-    color: #1d4ed8;
+    background: #e6f4ea;
+    border-color: rgba(46, 160, 67, 0.45);
+    color: #1a6628;
   }
   .blog-single-content .code-copy-btn:focus-visible {
     outline: 2px solid #93c5fd;
@@ -1314,7 +1342,7 @@
   .blog-single-content li > pre::-webkit-scrollbar-thumb,
   .blog-single-content blockquote > pre::-webkit-scrollbar-thumb,
   .blog-single-content .highlight::-webkit-scrollbar-thumb {
-    background: rgba(148, 163, 184, 0.38);
+    background: rgba(0, 0, 0, 0.16);
     border-radius: 999px;
   }
   .blog-single-content .highlight .line {
@@ -1371,6 +1399,44 @@
     border-color: rgba(51, 102, 204, 0.35);
     color: #1d4ed8;
   }
+  .blog-single-content h2[id],
+  .blog-single-content h3[id],
+  .blog-single-content h4[id] {
+    scroll-margin-top: 70px;
+  }
+  .blog-single-content a[id]:not([href]) {
+    scroll-margin-top: 70px;
+  }
+  .blog-single-content .appendix-back-btn {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    gap: 0.3rem;
+    padding: 0.28rem 0.72rem;
+    border: 1px solid rgba(51, 102, 204, 0.45);
+    border-radius: 999px;
+    background: rgba(51, 102, 204, 0.05);
+    color: #3366cc;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .blog-single-content .appendix-back-btn:hover {
+    background: rgba(51, 102, 204, 0.06);
+    border-color: rgba(51, 102, 204, 0.35);
+    color: #1d4ed8;
+  }
+  .dark .blog-single-content .appendix-back-btn {
+    border-color: rgba(125, 170, 255, 0.45);
+    color: #bfdbfe;
+    background: transparent;
+  }
+  .dark .blog-single-content .appendix-back-btn:hover {
+    border-color: rgba(147, 197, 253, 0.72);
+    color: #eff6ff;
+    background: rgba(37, 99, 235, 0.16);
+  }
 
   .dark .blog-single-article {
     border-color: rgba(148, 163, 184, 0.28);
@@ -1425,6 +1491,7 @@
     border-color: rgba(148, 163, 184, 0.34);
     background: linear-gradient(180deg, #0b1220 0%, #0f172a 100%);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 14px 32px rgba(2, 6, 23, 0.5);
+    scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
   }
   .dark .blog-single-content .highlight::before,
   .dark .blog-single-content > pre::before,
@@ -1432,26 +1499,79 @@
   .dark .blog-single-content blockquote > pre::before {
     color: rgba(191, 219, 254, 0.9);
   }
+  .dark .blog-single-content .highlight pre,
+  .dark .blog-single-content pre {
+    color: #e5eefb;
+  }
+  .dark .blog-single-content .highlight .lnt,
+  .dark .blog-single-content .highlight .ln,
+  .dark .blog-single-content .highlight .lntd:first-child {
+    color: rgba(176, 195, 219, 0.72) !important;
+  }
+  .dark .blog-single-content .highlight::-webkit-scrollbar-thumb,
+  .dark .blog-single-content > pre::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.38);
+  }
+  .dark .blog-single-content .highlight .chroma { color: #c9d1d9; }
+  .dark .blog-single-content .highlight .chroma .k,
+  .dark .blog-single-content .highlight .chroma .kc,
+  .dark .blog-single-content .highlight .chroma .kd,
+  .dark .blog-single-content .highlight .chroma .kn,
+  .dark .blog-single-content .highlight .chroma .kp,
+  .dark .blog-single-content .highlight .chroma .kr,
+  .dark .blog-single-content .highlight .chroma .kt { color: #ff7b72; }
+  .dark .blog-single-content .highlight .chroma .s,
+  .dark .blog-single-content .highlight .chroma .s1,
+  .dark .blog-single-content .highlight .chroma .s2,
+  .dark .blog-single-content .highlight .chroma .sa,
+  .dark .blog-single-content .highlight .chroma .sb,
+  .dark .blog-single-content .highlight .chroma .sc,
+  .dark .blog-single-content .highlight .chroma .sd,
+  .dark .blog-single-content .highlight .chroma .se,
+  .dark .blog-single-content .highlight .chroma .sh,
+  .dark .blog-single-content .highlight .chroma .si,
+  .dark .blog-single-content .highlight .chroma .sx,
+  .dark .blog-single-content .highlight .chroma .sr,
+  .dark .blog-single-content .highlight .chroma .ss { color: #a5d6ff; }
+  .dark .blog-single-content .highlight .chroma .m,
+  .dark .blog-single-content .highlight .chroma .mf,
+  .dark .blog-single-content .highlight .chroma .mh,
+  .dark .blog-single-content .highlight .chroma .mi,
+  .dark .blog-single-content .highlight .chroma .il,
+  .dark .blog-single-content .highlight .chroma .mo,
+  .dark .blog-single-content .highlight .chroma .mb,
+  .dark .blog-single-content .highlight .chroma .mx { color: #79c0ff; }
+  .dark .blog-single-content .highlight .chroma .na,
+  .dark .blog-single-content .highlight .chroma .nb,
+  .dark .blog-single-content .highlight .chroma .nc,
+  .dark .blog-single-content .highlight .chroma .nd,
+  .dark .blog-single-content .highlight .chroma .ne,
+  .dark .blog-single-content .highlight .chroma .nf,
+  .dark .blog-single-content .highlight .chroma .nl,
+  .dark .blog-single-content .highlight .chroma .nn,
+  .dark .blog-single-content .highlight .chroma .nt,
+  .dark .blog-single-content .highlight .chroma .nv,
+  .dark .blog-single-content .highlight .chroma .vc,
+  .dark .blog-single-content .highlight .chroma .vg,
+  .dark .blog-single-content .highlight .chroma .vi { color: #d2a8ff; }
+  .dark .blog-single-content .highlight .chroma .o,
+  .dark .blog-single-content .highlight .chroma .ow,
+  .dark .blog-single-content .highlight .chroma .p { color: #c9d1d9; }
+  .dark .blog-single-content .highlight .chroma .c,
+  .dark .blog-single-content .highlight .chroma .ch,
+  .dark .blog-single-content .highlight .chroma .cm,
+  .dark .blog-single-content .highlight .chroma .c1,
+  .dark .blog-single-content .highlight .chroma .cs,
+  .dark .blog-single-content .highlight .chroma .cp,
+  .dark .blog-single-content .highlight .chroma .cpf { color: #8b949e; font-style: italic; }
   .dark .blog-single-content .code-copy-btn {
     border-color: rgba(147, 197, 253, 0.56);
     background: rgba(30, 41, 59, 0.92);
     color: #dbeafe;
     box-shadow: 0 4px 12px rgba(2, 6, 23, 0.55);
   }
-  .dark .blog-single-content .code-copy-btn:hover {
-    border-color: rgba(147, 197, 253, 0.88);
-    background: rgba(37, 99, 235, 0.34);
-    color: #eff6ff;
-  }
   .dark .blog-single-content .code-copy-btn[data-copy-state='copied'] {
     pointer-events: none;
-    transform: none;
-    border-color: rgba(147, 197, 253, 0.9);
-    background: rgba(37, 99, 235, 0.42);
-    color: #eff6ff;
-  }
-  .dark .blog-single-content .code-copy-btn[data-copy-state='copied']:hover {
-    transform: none;
     border-color: rgba(147, 197, 253, 0.9);
     background: rgba(37, 99, 235, 0.42);
     color: #eff6ff;
@@ -1528,22 +1648,8 @@
       }
 
       var normalized = (lang || '').toLowerCase();
-      var isPlainOutput = ['text', 'plain', 'plaintext', 'output', 'console'].indexOf(normalized) >= 0;
-      if (!isPlainOutput) return false;
-
-      var cursor = block;
-      for (var i = 0; i < 4 && cursor; i++) {
-        cursor = cursor.previousElementSibling;
-        if (!cursor) break;
-        var marker = (cursor.textContent || '').toLowerCase();
-        if (
-          marker.indexOf('expected example output') >= 0 ||
-          marker.indexOf('system output') >= 0 ||
-          marker.indexOf('预期输出示例') >= 0 ||
-          marker.indexOf('系统输出示例') >= 0
-        ) {
-          return true;
-        }
+      if (['text', 'plain', 'plaintext', 'output', 'console'].indexOf(normalized) >= 0) {
+        return true;
       }
       return false;
     }
@@ -1575,6 +1681,9 @@
     document.querySelectorAll('.blog-single-content .highlight, .blog-single-content pre').forEach(function (block) {
       var code = block.querySelector('code');
       if (!code) return;
+      
+      
+      if (block.tagName === 'PRE' && block.closest('.highlight')) return;
 
       var lang = detectLang(code) || 'text';
       block.setAttribute('data-code-lang', lang);
@@ -1612,12 +1721,10 @@
           
           btn.textContent = 'Copied';
           btn.dataset.copyState = 'copied';
-          btn.disabled = true;
 
           var scheduleReset = function () {
             var timer = setTimeout(function () {
               btn.textContent = 'Copy';
-              btn.disabled = false;
               delete btn.dataset.copyState;
               delete btn.dataset.resetTimer;
             }, 1200);
@@ -1653,8 +1760,7 @@
 <p>This is a <strong>shareable</strong> general-purpose note. It does not include any real nodes, UUIDs, public keys, passwords, or other private information.</p>
 <p>All commands, scripts, and configuration examples are given in code blocks so they can be copied directly into Typora or any other Markdown reader.</p>
 <p><strong>Reminder:</strong> the <code>iptables</code>, <code>systemctl</code>, <code>/usr/local/bin/</code>, and <code>/etc/systemd/system/</code> operations shown here all require <code>sudo</code>. Before making changes, make sure you still have a recovery path such as SSH, console access, or another way back into the machine.</p>
-<p>If you only want the practical path, start from <strong>Section 5</strong>.</p>
-</blockquote>
+<p>If you only want the practical path, start from <a href="#section-5" class="appendix-back-btn">↓ Section 5</a>.</p></blockquote>
 <h2 id="1-what-is-this-architecture-doing">1. What is this architecture doing?</h2>
 <p>This note describes a common local traffic steering architecture:</p>
 <ul>
@@ -1722,13 +1828,13 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 <p>This note follows the same sequence as the source document:</p>
 <ol start="5">
 <li><strong>Complete Xray installation and configuration flow</strong></li>
-<li><strong>Xray commands and troubleshooting</strong></li>
 <li><strong>iptables configuration flow</strong>
 <ul>
 <li>Case 1: forced transparent proxying, no condition check</li>
 <li>Case 2: Xray health check to avoid a total network outage</li>
 </ul>
 </li>
+<li><strong>Reference and troubleshooting commands</strong></li>
 <li><strong>Appendices</strong>
 <ul>
 <li>Appendix A: single-exit configuration template</li>
@@ -1750,6 +1856,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 </li>
 <li>Then configure <code>systemd</code> startup.</li>
 </ol>
+<p><a id="section-5"></a></p>
 <h2 id="5-xray-installation-and-configuration-flow">5. Xray installation and configuration flow</h2>
 <h3 id="51-what-is-xray-doing-here">5.1 What is Xray doing here?</h3>
 <p>In this architecture, Xray is responsible for:</p>
@@ -1765,8 +1872,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Install Xray (must use sudo, and keep the whole command on one line)</span>
 </span></span><span class="line"><span class="cl">sudo bash -c <span class="s2">&#34;</span><span class="k">$(</span>curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh<span class="k">)</span><span class="s2">&#34;</span> @ install
 </span></span></code></pre></div><blockquote>
-<p>Do not move <code>@ install</code> onto the next line, or the shell may treat it as a separate <code>install</code> command.</p>
-</blockquote>
+<p>Do not move <code>@ install</code> onto the next line, or the shell may treat it as a separate <code>install</code> command.</p></blockquote>
 <h3 id="53-check-whether-installation-succeeded">5.3 Check whether installation succeeded</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Show Xray version</span>
 </span></span><span class="line"><span class="cl">/usr/local/bin/xray version
@@ -1779,47 +1885,44 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 </span></span></code></pre></div><p><strong>Expected example output:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">-rw-r--r-- 1 root root 1234 ... /usr/local/etc/xray/config.json
 </span></span></code></pre></div><p>If the file does not exist yet, you can create it manually in the next step.</p>
-<h3 id="55-choose-a-configuration-type">5.5 Choose a configuration type</h3>
-<p>The templates here are the base skeletons for generating <code>config.json</code>. They determine where different traffic types eventually go.</p>
+<p><a id=”section-55”></a></p>
+<h3 id="55-edit-the-configuration-with-nano">5.5 Edit the configuration with nano</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Edit the Xray configuration file with nano</span>
+</span></span><span class="line"><span class="cl">sudo nano /usr/local/etc/xray/config.json
+</span></span></code></pre></div><p>The templates here are the base skeletons for generating <code>config.json</code>. They determine where different traffic types eventually go.</p>
 <p>If your requirement is:</p>
 <ul>
 <li>OpenAI / ChatGPT / Codex / GPT related traffic goes through <strong>node 1</strong></li>
 <li>all other traffic goes <strong>direct</strong></li>
 </ul>
-<p>use:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Appendix A: single-exit configuration template
-</span></span></code></pre></div><p>If your requirement is:</p>
+<p>use: <a href=”#appendix-a” class=”appendix-back-btn”>↓ Appendix A: single-exit configuration template</a></p>
+<p>If your requirement is:</p>
 <ul>
 <li>OpenAI / ChatGPT / Codex / GPT related traffic goes through <strong>node 1</strong></li>
 <li>all other traffic goes through <strong>node 2</strong></li>
 </ul>
-<p>use:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Appendix B: dual-exit configuration template
-</span></span></code></pre></div><blockquote>
-<p>Practical note: if you do not want to fill every field by hand, you can give “one or more proxy node links + the template you want” to a commercial model to generate a first draft of <code>config.json</code>, and then validate it yourself locally. To reduce sensitive-data trace risk, temporary chats or one-off sessions are safer for that step.</p>
-</blockquote>
-<h3 id="56-edit-the-configuration-with-nano">5.6 Edit the configuration with nano</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Edit the Xray configuration file with nano</span>
-</span></span><span class="line"><span class="cl">sudo nano /usr/local/etc/xray/config.json
-</span></span></code></pre></div><p>Paste the full template you chose, then replace the placeholders with your own values.</p>
-<h4 id="561-save-and-exit-in-nano">5.6.1 Save and exit in nano</h4>
+<p>use: <a href=”#appendix-b” class=”appendix-back-btn”>↓ Appendix B: dual-exit configuration template</a></p>
+<blockquote>
+<p>Practical note: if you do not want to fill every field by hand, you can give “one or more proxy node links + the template you want” to a commercial model to generate a first draft of <code>config.json</code>, and then validate it yourself locally. To reduce sensitive-data trace risk, temporary chats or one-off sessions are safer for that step.</p></blockquote>
+<p>Paste the full template you chose, then replace the placeholders with your own values.</p>
+<h4 id="551-save-and-exit-in-nano">5.5.1 Save and exit in nano</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Ctrl + O   -&gt; write file
 </span></span><span class="line"><span class="cl">Enter      -&gt; confirm file name
 </span></span><span class="line"><span class="cl">Ctrl + X   -&gt; exit nano
 </span></span></code></pre></div><p>If you want to quit without saving:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Ctrl + X
 </span></span><span class="line"><span class="cl">press N
-</span></span></code></pre></div><h4 id="562-reference-docs">5.6.2 Reference docs</h4>
+</span></span></code></pre></div><h4 id="552-reference-docs">5.5.2 Reference docs</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">https://www.nano-editor.org/docs.php
 </span></span><span class="line"><span class="cl">https://xtls.github.io/config/
-</span></span></code></pre></div><h3 id="57-test-the-config-syntax">5.7 Test the config syntax</h3>
+</span></span></code></pre></div><h3 id="56-test-the-config-syntax">5.6 Test the config syntax</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Check whether Xray can parse the config correctly</span>
 </span></span><span class="line"><span class="cl">sudo /usr/local/bin/xray run -test -config /usr/local/etc/xray/config.json
 </span></span></code></pre></div><p><strong>Expected example output:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Xray 1.x.x ...
 </span></span><span class="line"><span class="cl">Configuration OK.
 </span></span></code></pre></div><p>If this step fails, do not start the service yet. Go back and fix the config first.</p>
-<h3 id="58-enable-and-start-xray">5.8 Enable and start Xray</h3>
+<h3 id="57-enable-and-start-xray">5.7 Enable and start Xray</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Reload systemd configuration</span>
 </span></span><span class="line"><span class="cl">sudo systemctl daemon-reload
 </span></span><span class="line"><span class="cl">
@@ -1838,7 +1941,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 </span></span></code></pre></div><p>If you see:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Active: failed
 </span></span></code></pre></div><p>then the configuration or startup parameters still need troubleshooting.</p>
-<h3 id="59-check-whether-the-listening-ports-are-correct">5.9 Check whether the listening ports are correct</h3>
+<h3 id="58-check-whether-the-listening-ports-are-correct">5.8 Check whether the listening ports are correct</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Check whether transparent proxy, SOCKS, and HTTP inbounds are listening</span>
 </span></span><span class="line"><span class="cl">ss -ltnup <span class="p">|</span> grep -E <span class="s1">&#39;12345|10808|10809&#39;</span>
 </span></span></code></pre></div><p><strong>Expected example output:</strong></p>
@@ -1853,42 +1956,8 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 <li><code>10809</code></li>
 </ul>
 <p>Once those appear, the Xray installation and configuration flow is done.</p>
-<h2 id="6-xray-commands-and-troubleshooting-information">6. Xray commands and troubleshooting information</h2>
-<p>This section is not the main setup path anymore. It is the set of commands you will commonly use after installation.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Start Xray</span>
-</span></span><span class="line"><span class="cl">sudo systemctl start xray
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Stop Xray</span>
-</span></span><span class="line"><span class="cl">sudo systemctl stop xray
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Restart Xray</span>
-</span></span><span class="line"><span class="cl">sudo systemctl restart xray
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Try to reload config (if the service supports reload)</span>
-</span></span><span class="line"><span class="cl">sudo systemctl reload xray
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Enable on boot</span>
-</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> xray
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Disable on boot</span>
-</span></span><span class="line"><span class="cl">sudo systemctl disable xray
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Check Xray service status</span>
-</span></span><span class="line"><span class="cl">sudo systemctl status xray --no-pager -n <span class="m">50</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Show the latest 100 lines of Xray logs</span>
-</span></span><span class="line"><span class="cl">journalctl -u xray -n <span class="m">100</span> --no-pager
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Follow Xray logs in real time</span>
-</span></span><span class="line"><span class="cl">journalctl -u xray -f
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Check whether key ports are listening</span>
-</span></span><span class="line"><span class="cl">ss -ltnup <span class="p">|</span> grep -E <span class="s1">&#39;12345|10808|10809&#39;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Query egress IP through SOCKS proxy</span>
-</span></span><span class="line"><span class="cl">curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Query egress IP through HTTP proxy</span>
-</span></span><span class="line"><span class="cl">curl -x http://127.0.0.1:10809 https://api.ipify.org
-</span></span></code></pre></div><h2 id="7-iptables-configuration-flow">7. iptables configuration flow</h2>
-<h3 id="71-what-is-iptables-doing-here">7.1 What is iptables doing here?</h3>
+<h2 id="6-iptables-configuration-flow">6. iptables configuration flow</h2>
+<h3 id="61-what-is-iptables-doing-here">6.1 What is iptables doing here?</h3>
 <p>In this architecture, iptables is responsible for:</p>
 <ul>
 <li>intercepting locally generated traffic,</li>
@@ -1898,7 +1967,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 <p>In one sentence:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Xray decides where traffic should go, and iptables decides which traffic enters Xray first.
 </span></span></code></pre></div><p>This is where transparent proxy rules begin. There are two cases.</p>
-<h2 id="8-case-1-forced-transparent-proxying-with-no-condition-checks">8. Case 1: forced transparent proxying, with no condition checks</h2>
+<h2 id="7-case-1-forced-transparent-proxying-with-no-condition-checks">7. Case 1: forced transparent proxying, with no condition checks</h2>
 <p>If your requirement is:</p>
 <ul>
 <li>all external TCP traffic must be redirected into Xray,</li>
@@ -1906,7 +1975,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 <li>you do not need automatic fallback to direct access,</li>
 </ul>
 <p>then you can use the following <strong>forced transparent proxy</strong> rule set.</p>
-<h3 id="81-write-the-script-with-nano">8.1 Write the script with nano</h3>
+<h3 id="71-write-the-script-with-nano">7.1 Write the script with nano</h3>
 <p>Create the script file first:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nano /usr/local/bin/xray-iptables-apply.sh
 </span></span></code></pre></div><p>Paste the following content in full:</p>
@@ -1957,13 +2026,13 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Redirect all remaining TCP traffic to Xray transparent inbound 12345</span>
 </span></span><span class="line"><span class="cl">sudo iptables -t nat -A XRAY -p tcp -j REDIRECT --to-ports <span class="m">12345</span>
-</span></span></code></pre></div><h3 id="82-make-the-script-executable-and-run-it">8.2 Make the script executable and run it</h3>
+</span></span></code></pre></div><h3 id="72-make-the-script-executable-and-run-it">7.2 Make the script executable and run it</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Make it executable</span>
 </span></span><span class="line"><span class="cl">sudo chmod +x /usr/local/bin/xray-iptables-apply.sh
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Run the script</span>
 </span></span><span class="line"><span class="cl">sudo /usr/local/bin/xray-iptables-apply.sh
-</span></span></code></pre></div><h3 id="83-what-you-should-see-after-applying-the-rules">8.3 What you should see after applying the rules</h3>
+</span></span></code></pre></div><h3 id="73-what-you-should-see-after-applying-the-rules">7.3 What you should see after applying the rules</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Export the current iptables rules</span>
 </span></span><span class="line"><span class="cl">sudo iptables-save
 </span></span></code></pre></div><p><strong>Expected example output:</strong></p>
@@ -1983,7 +2052,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 <li><code>-A XRAY -p tcp -j REDIRECT --to-ports 12345</code></li>
 <li><code>-A OUTPUT -p udp --dport 443 -j REJECT ...</code></li>
 </ul>
-<h3 id="84-how-to-verify-that-transparent-proxying-is-actually-working">8.4 How to verify that transparent proxying is actually working</h3>
+<h3 id="74-how-to-verify-that-transparent-proxying-is-actually-working">7.4 How to verify that transparent proxying is actually working</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1) Confirm Xray ports are still listening</span>
 </span></span><span class="line"><span class="cl">ss -ltnup <span class="p">|</span> grep -E <span class="s1">&#39;12345|10808|10809&#39;</span>
 </span></span><span class="line"><span class="cl">
@@ -2007,7 +2076,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 <li>whether routing rules are sending traffic into a bad outbound,</li>
 <li>whether the host itself can reach the network directly.</li>
 </ol>
-<h3 id="85-teardown-script">8.5 Teardown script</h3>
+<h3 id="75-teardown-script">7.5 Teardown script</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nano /usr/local/bin/xray-iptables-teardown.sh
 </span></span></code></pre></div><p>Put the following content into it:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
@@ -2029,7 +2098,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo chmod +x /usr/local/bin/xray-iptables-teardown.sh
 </span></span></code></pre></div><p>Run it when you want to restore direct access:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo /usr/local/bin/xray-iptables-teardown.sh
-</span></span></code></pre></div><h3 id="86-what-you-should-see-after-teardown">8.6 What you should see after teardown</h3>
+</span></span></code></pre></div><h3 id="76-what-you-should-see-after-teardown">7.6 What you should see after teardown</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Export current iptables rules again</span>
 </span></span><span class="line"><span class="cl">sudo iptables-save
 </span></span></code></pre></div><p><strong>Expected example output:</strong></p>
@@ -2045,14 +2114,14 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 </span></span><span class="line"><span class="cl">:POSTROUTING ACCEPT [0:0]
 </span></span><span class="line"><span class="cl">COMMIT
 </span></span></code></pre></div><p>That means the <code>XRAY</code> chain and its related jump rules should be gone.</p>
-<h3 id="87-make-it-start-automatically-on-boot-for-the-forced-mode">8.7 Make it start automatically on boot (for the forced mode)</h3>
+<h3 id="77-make-it-start-automatically-on-boot-for-the-forced-mode">7.7 Make it start automatically on boot (for the forced mode)</h3>
 <p>If you choose the forced transparent proxy mode, running the script once manually is not enough, because the iptables rules usually will not survive a reboot.</p>
 <p>A direct way to handle this is:</p>
 <ul>
 <li>let the Xray service start on boot,</li>
 <li>create an extra <code>systemd</code> service that runs <code>xray-iptables-apply.sh</code> after boot.</li>
 </ul>
-<h4 id="871-create-a-systemd-service">8.7.1 Create a systemd service</h4>
+<h4 id="771-create-a-systemd-service">7.7.1 Create a systemd service</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nano /etc/systemd/system/xray-iptables-apply.service
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[Unit]</span>
 </span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">Apply Xray iptables redirect rules</span>
@@ -2067,7 +2136,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
 </span></span><span class="line"><span class="cl"><span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
-</span></span></code></pre></div><h4 id="872-enable-automatic-startup">8.7.2 Enable automatic startup</h4>
+</span></span></code></pre></div><h4 id="772-enable-automatic-startup">7.7.2 Enable automatic startup</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Reload systemd configuration</span>
 </span></span><span class="line"><span class="cl">sudo systemctl daemon-reload
 </span></span><span class="line"><span class="cl">
@@ -2076,18 +2145,18 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Enable the iptables rule service</span>
 </span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> --now xray-iptables-apply.service
-</span></span></code></pre></div><h4 id="873-check-service-status">8.7.3 Check service status</h4>
+</span></span></code></pre></div><h4 id="773-check-service-status">7.7.3 Check service status</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl status xray --no-pager
 </span></span><span class="line"><span class="cl">sudo systemctl status xray-iptables-apply.service --no-pager
 </span></span></code></pre></div><p>If everything is correct, you should see:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">xray.service: active (running)
 </span></span><span class="line"><span class="cl">xray-iptables-apply.service: active (exited)
 </span></span></code></pre></div><p><code>active (exited)</code> is normal here because the service only runs a script once and does not stay resident.</p>
-<h4 id="874-if-you-want-to-disable-it-later">8.7.4 If you want to disable it later</h4>
+<h4 id="774-if-you-want-to-disable-it-later">7.7.4 If you want to disable it later</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl disable --now xray-iptables-apply.service
 </span></span></code></pre></div><p>Then run the teardown script to go back to direct mode:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo /usr/local/bin/xray-iptables-teardown.sh
-</span></span></code></pre></div><h2 id="9-case-2-check-whether-xray-is-healthy-and-avoid-a-total-network-outage-when-it-is-not">9. Case 2: check whether Xray is healthy and avoid a total network outage when it is not</h2>
+</span></span></code></pre></div><h2 id="8-case-2-check-whether-xray-is-healthy-and-avoid-a-total-network-outage-when-it-is-not">8. Case 2: check whether Xray is healthy and avoid a total network outage when it is not</h2>
 <p>If your requirement is:</p>
 <ul>
 <li>traffic should be transparently proxied while Xray is healthy,</li>
@@ -2101,7 +2170,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 <li>Xray healthy -&gt; apply proxy rules</li>
 <li>Xray unhealthy -&gt; remove proxy rules and return to direct mode</li>
 </ul>
-<h3 id="91-write-the-health-check-script-with-nano">9.1 Write the health-check script with nano</h3>
+<h3 id="81-write-the-health-check-script-with-nano">8.1 Write the health-check script with nano</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nano /usr/local/bin/xray-iptables-healthcheck.sh
 </span></span></code></pre></div><p>Paste the following content:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
@@ -2194,19 +2263,19 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 </span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;Xray unhealthy -&gt; switch to direct mode&#34;</span>
 </span></span><span class="line"><span class="cl">  apply_direct_rules
 </span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span></code></pre></div><h3 id="92-make-the-health-check-script-executable-and-test-it-once-manually">9.2 Make the health-check script executable and test it once manually</h3>
+</span></span></code></pre></div><h3 id="82-make-the-health-check-script-executable-and-test-it-once-manually">8.2 Make the health-check script executable and test it once manually</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Make it executable</span>
 </span></span><span class="line"><span class="cl">sudo chmod +x /usr/local/bin/xray-iptables-healthcheck.sh
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Run it once manually to confirm there is no syntax or permission issue</span>
 </span></span><span class="line"><span class="cl">sudo /usr/local/bin/xray-iptables-healthcheck.sh
-</span></span></code></pre></div><h3 id="93-run-the-health-check-script-periodically-with-systemd">9.3 Run the health-check script periodically with systemd</h3>
+</span></span></code></pre></div><h3 id="83-run-the-health-check-script-periodically-with-systemd">8.3 Run the health-check script periodically with systemd</h3>
 <p>After this is set up, systemd will run the health-check script once per minute:</p>
 <ul>
 <li>if Xray is healthy, proxy rules stay applied,</li>
 <li>if Xray is unhealthy, rules are switched back toward direct mode.</li>
 </ul>
-<h4 id="931-create-the-systemd-service">9.3.1 Create the systemd service</h4>
+<h4 id="831-create-the-systemd-service">8.3.1 Create the systemd service</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nano /etc/systemd/system/xray-iptables-healthcheck.service
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[Unit]</span>
 </span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">Xray iptables healthcheck</span>
@@ -2215,7 +2284,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 </span></span><span class="line"><span class="cl"><span class="k">[Service]</span>
 </span></span><span class="line"><span class="cl"><span class="na">Type</span><span class="o">=</span><span class="s">oneshot</span>
 </span></span><span class="line"><span class="cl"><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/xray-iptables-healthcheck.sh</span>
-</span></span></code></pre></div><h4 id="932-create-the-systemd-timer">9.3.2 Create the systemd timer</h4>
+</span></span></code></pre></div><h4 id="832-create-the-systemd-timer">8.3.2 Create the systemd timer</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nano /etc/systemd/system/xray-iptables-healthcheck.timer
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[Unit]</span>
 </span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">Run Xray iptables healthcheck every minute</span>
@@ -2227,7 +2296,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
 </span></span><span class="line"><span class="cl"><span class="na">WantedBy</span><span class="o">=</span><span class="s">timers.target</span>
-</span></span></code></pre></div><h4 id="933-enable-the-timer">9.3.3 Enable the timer</h4>
+</span></span></code></pre></div><h4 id="833-enable-the-timer">8.3.3 Enable the timer</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Reload systemd configuration</span>
 </span></span><span class="line"><span class="cl">sudo systemctl daemon-reload
 </span></span><span class="line"><span class="cl">
@@ -2241,7 +2310,50 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 </span></span><span class="line"><span class="cl">sudo systemctl list-timers --all <span class="p">|</span> grep xray
 </span></span></code></pre></div><p><strong>Expected example output:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">... xray-iptables-healthcheck.timer loaded active waiting ...
-</span></span></code></pre></div><h3 id="94-useful-health-check-commands-run-these-after-enabling-the-timer">9.4 Useful health-check commands (run these after enabling the timer)</h3>
+</span></span></code></pre></div><h2 id="9-reference-and-troubleshooting-commands">9. Reference and troubleshooting commands</h2>
+<h3 id="91-xray-service-commands">9.1 Xray service commands</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Start Xray</span>
+</span></span><span class="line"><span class="cl">sudo systemctl start xray
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Stop Xray</span>
+</span></span><span class="line"><span class="cl">sudo systemctl stop xray
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Restart Xray</span>
+</span></span><span class="line"><span class="cl">sudo systemctl restart xray
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Try to reload config (if the service supports reload)</span>
+</span></span><span class="line"><span class="cl">sudo systemctl reload xray
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable on boot</span>
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> xray
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Disable on boot</span>
+</span></span><span class="line"><span class="cl">sudo systemctl disable xray
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Check Xray service status</span>
+</span></span><span class="line"><span class="cl">sudo systemctl status xray --no-pager -n <span class="m">50</span>
+</span></span></code></pre></div><h3 id="92-logs-ports-and-connection-tests">9.2 Logs, ports, and connection tests</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Show the latest 100 lines of Xray logs</span>
+</span></span><span class="line"><span class="cl">journalctl -u xray -n <span class="m">100</span> --no-pager
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Follow Xray logs in real time</span>
+</span></span><span class="line"><span class="cl">journalctl -u xray -f
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Check key listening ports</span>
+</span></span><span class="line"><span class="cl">ss -ltnup <span class="p">|</span> grep -E <span class="s1">&#39;12345|10808|10809&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Export current iptables rules</span>
+</span></span><span class="line"><span class="cl">sudo iptables-save
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Show nft backend rules</span>
+</span></span><span class="line"><span class="cl">sudo nft list ruleset
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Query egress IP via SOCKS</span>
+</span></span><span class="line"><span class="cl">curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Query egress IP via HTTP</span>
+</span></span><span class="line"><span class="cl">curl -x http://127.0.0.1:10809 https://api.ipify.org
+</span></span></code></pre></div><h3 id="93-health-check-timer-commands-run-after-enabling-the-timer">9.3 Health-check timer commands (run after enabling the timer)</h3>
 <p><strong>1) Check whether xray is running normally</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl is-active xray
 </span></span></code></pre></div><p>Expected when healthy:</p>
@@ -2275,32 +2387,8 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 <li>the healthcheck service exits with <code>status=1/FAILURE</code></li>
 <li>the jump / UDP / redirect counts are not what you expect, for example duplicates greater than <code>1</code></li>
 </ul>
-<h2 id="10-other-useful-troubleshooting-commands">10. Other useful troubleshooting commands</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Check current Xray status</span>
-</span></span><span class="line"><span class="cl">sudo systemctl status xray --no-pager -n <span class="m">50</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Show recent Xray logs</span>
-</span></span><span class="line"><span class="cl">journalctl -u xray -n <span class="m">100</span> --no-pager
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Follow Xray logs in real time</span>
-</span></span><span class="line"><span class="cl">journalctl -u xray -f
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Check key listening ports</span>
-</span></span><span class="line"><span class="cl">ss -ltnup <span class="p">|</span> grep -E <span class="s1">&#39;12345|10808|10809&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Export current iptables rules</span>
-</span></span><span class="line"><span class="cl">sudo iptables-save
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Show nft backend rules</span>
-</span></span><span class="line"><span class="cl">sudo nft list ruleset
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Query egress IP via SOCKS</span>
-</span></span><span class="line"><span class="cl">curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Query egress IP via HTTP</span>
-</span></span><span class="line"><span class="cl">curl -x http://127.0.0.1:10809 https://api.ipify.org
-</span></span></code></pre></div><h2 id="11-final-checklist">11. Final checklist</h2>
-<h3 id="111-is-the-xray-service-itself-healthy">11.1 Is the Xray service itself healthy?</h3>
+<h2 id="10-final-checklist">10. Final checklist</h2>
+<h3 id="101-is-the-xray-service-itself-healthy">10.1 Is the Xray service itself healthy?</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl status xray --no-pager
 </span></span><span class="line"><span class="cl">ss -ltnup <span class="p">|</span> grep -E <span class="s1">&#39;12345|10808|10809&#39;</span>
 </span></span></code></pre></div><p>You should at least see:</p>
@@ -2308,7 +2396,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 <li><code>xray.service</code> as <code>active (running)</code></li>
 <li><code>12345 / 10808 / 10809</code> listening</li>
 </ul>
-<h3 id="112-does-the-proxy-egress-match-expectations">11.2 Does the proxy egress match expectations?</h3>
+<h3 id="102-does-the-proxy-egress-match-expectations">10.2 Does the proxy egress match expectations?</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -x socks5h://127.0.0.1:10808 https://api.ipify.org
 </span></span><span class="line"><span class="cl">curl -x http://127.0.0.1:10809 https://api.ipify.org
 </span></span></code></pre></div><p>If the IP is wrong here, check:</p>
@@ -2317,20 +2405,20 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 <li>whether routing sends traffic to the wrong outbound,</li>
 <li>whether the node itself is usable.</li>
 </ul>
-<h3 id="113-do-the-iptables-rules-match-the-mode-you-chose">11.3 Do the iptables rules match the mode you chose?</h3>
+<h3 id="103-do-the-iptables-rules-match-the-mode-you-chose">10.3 Do the iptables rules match the mode you chose?</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo iptables-save
 </span></span></code></pre></div><p>You need to confirm which mode you are in:</p>
 <ul>
 <li><strong>forced transparent proxy mode</strong>: rules should stay present,</li>
 <li><strong>health-check fallback mode</strong>: rules should change with Xray health.</li>
 </ul>
-<h3 id="114-does-startup-behavior-match-expectations">11.4 Does startup behavior match expectations?</h3>
+<h3 id="104-does-startup-behavior-match-expectations">10.4 Does startup behavior match expectations?</h3>
 <p>If you use the forced mode, check:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl status xray-iptables-apply.service --no-pager
 </span></span></code></pre></div><p>If you use the health-check mode, check:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl status xray-iptables-healthcheck.timer --no-pager
 </span></span><span class="line"><span class="cl">sudo systemctl list-timers --all <span class="p">|</span> grep xray
-</span></span></code></pre></div><h3 id="115-where-should-you-look-first-when-something-breaks">11.5 Where should you look first when something breaks?</h3>
+</span></span></code></pre></div><h3 id="105-where-should-you-look-first-when-something-breaks">10.5 Where should you look first when something breaks?</h3>
 <p>Check in this order first:</p>
 <ol>
 <li><code>sudo systemctl status xray --no-pager</code></li>
@@ -2339,7 +2427,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 <li><code>sudo iptables-save</code></li>
 <li><code>curl -x socks5h://127.0.0.1:10808 https://api.ipify.org</code></li>
 </ol>
-<h2 id="12-related-file-locations">12. Related file locations</h2>
+<h2 id="11-related-file-locations">11. Related file locations</h2>
 <p>The files directly related to this shareable note in the workspace are:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">tmp/xray-config/xray-single-exit-template.json
 </span></span><span class="line"><span class="cl">tmp/xray-config/xray-dual-exit-template.json
@@ -2348,7 +2436,9 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">/home/claw1/.openclaw/workspace/tmp/xray-config/xray-single-exit-template.json
 </span></span><span class="line"><span class="cl">/home/claw1/.openclaw/workspace/tmp/xray-config/xray-dual-exit-template.json
 </span></span><span class="line"><span class="cl">/home/claw1/.openclaw/workspace/tmp/xray-config/Xray-iptables-notes.md
-</span></span></code></pre></div><h2 id="appendix-a-single-exit-configuration-template">Appendix A: single-exit configuration template</h2>
+</span></span></code></pre></div><p><a id="appendix-a"></a></p>
+<h2 id="appendix-a-single-exit-configuration-template">Appendix A: single-exit configuration template</h2>
+<p><a href="#section-55" class="appendix-back-btn">↑ Back to §5.5 Edit the configuration with nano</a></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;log&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;loglevel&#34;</span><span class="p">:</span> <span class="s2">&#34;warning&#34;</span>
@@ -2484,7 +2574,9 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 </span></span><span class="line"><span class="cl">    <span class="p">]</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="appendix-b-dual-exit-configuration-template">Appendix B: dual-exit configuration template</h2>
+</span></span></code></pre></div><p><a id="appendix-b"></a></p>
+<h2 id="appendix-b-dual-exit-configuration-template">Appendix B: dual-exit configuration template</h2>
+<p><a href="#section-55" class="appendix-back-btn">↑ Back to §5.5 Edit the configuration with nano</a></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;log&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;loglevel&#34;</span><span class="p">:</span> <span class="s2">&#34;warning&#34;</span>
@@ -2644,8 +2736,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><h2 id="appendix-c-consolidated-iptables-bash-command-area">Appendix C: consolidated iptables Bash command area</h2>
 <blockquote>
-<p>This appendix intentionally duplicates Sections 8 and 9 so the commands can be copied from one place.</p>
-</blockquote>
+<p>This appendix intentionally duplicates Sections 8 and 9 so the commands can be copied from one place.</p></blockquote>
 <h3 id="c1-forced-transparent-proxy-apply-script">C.1 Forced transparent proxy: apply script</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -e
@@ -2818,7 +2909,7 @@ So Xray decides <em>which path to use</em>, while iptables decides <em>which tra
   </div>
   <div class="font-bold">English</div>
   
-  <div><a href="http://192.168.2.179:1313/zh/blog/xray-iptables-notes/">中文 (简体)</a></div>
+  <div><a href="https://lewen-wangcc.github.io/zh/blog/xray-iptables-notes/">中文 (简体)</a></div>
   
 </div>
 

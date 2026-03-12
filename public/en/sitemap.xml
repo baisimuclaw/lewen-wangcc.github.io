@@ -2,87 +2,87 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://192.168.2.179:1313/blog/xray-iptables-notes/</loc>
+    <loc>https://lewen-wangcc.github.io/blog/xray-iptables-notes/</loc>
     <lastmod>2026-03-12T04:50:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="http://192.168.2.179:1313/zh/blog/xray-iptables-notes/"
+                href="https://lewen-wangcc.github.io/zh/blog/xray-iptables-notes/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="http://192.168.2.179:1313/blog/xray-iptables-notes/"
+                href="https://lewen-wangcc.github.io/blog/xray-iptables-notes/"
                 />
   </url><url>
-    <loc>http://192.168.2.179:1313/blog/</loc>
+    <loc>https://lewen-wangcc.github.io/blog/</loc>
     <lastmod>2026-03-12T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="http://192.168.2.179:1313/zh/blog/"
+                href="https://lewen-wangcc.github.io/zh/blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="http://192.168.2.179:1313/blog/"
+                href="https://lewen-wangcc.github.io/blog/"
                 />
   </url><url>
-    <loc>http://192.168.2.179:1313/</loc>
+    <loc>https://lewen-wangcc.github.io/</loc>
     <lastmod>2024-12-30T10:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="http://192.168.2.179:1313/zh/"
+                href="https://lewen-wangcc.github.io/zh/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="http://192.168.2.179:1313/"
+                href="https://lewen-wangcc.github.io/"
                 />
   </url><url>
-    <loc>http://192.168.2.179:1313/experience/</loc>
+    <loc>https://lewen-wangcc.github.io/experience/</loc>
     <lastmod>2024-12-30T10:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="http://192.168.2.179:1313/zh/experience/"
+                href="https://lewen-wangcc.github.io/zh/experience/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="http://192.168.2.179:1313/experience/"
+                href="https://lewen-wangcc.github.io/experience/"
                 />
   </url><url>
-    <loc>http://192.168.2.179:1313/gallery/</loc>
+    <loc>https://lewen-wangcc.github.io/gallery/</loc>
     <lastmod>2024-12-30T10:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="http://192.168.2.179:1313/zh/gallery/"
+                href="https://lewen-wangcc.github.io/zh/gallery/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="http://192.168.2.179:1313/gallery/"
+                href="https://lewen-wangcc.github.io/gallery/"
                 />
   </url><url>
-    <loc>http://192.168.2.179:1313/publication/</loc>
+    <loc>https://lewen-wangcc.github.io/publication/</loc>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="http://192.168.2.179:1313/zh/publication/"
+                href="https://lewen-wangcc.github.io/zh/publication/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="http://192.168.2.179:1313/publication/"
+                href="https://lewen-wangcc.github.io/publication/"
                 />
   </url>
 </urlset>

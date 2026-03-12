@@ -1,3 +1,3 @@
 User-agent: *
 
-Sitemap: http://192.168.2.179:1313/sitemap.xml
+Sitemap: https://lewen-wangcc.github.io/sitemap.xml
