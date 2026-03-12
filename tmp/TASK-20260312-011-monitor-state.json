@@ -1,0 +1,17 @@
+{
+  "task_id": "TASK-20260312-011",
+  "stage": "coding",
+  "owner_agent": "coder",
+  "status": "cleared",
+  "started_at": "2026-03-12T02:19:31+00:00",
+  "last_update_at": "2026-03-12T02:19:52+00:00",
+  "monitor_interval_minutes": 3,
+  "monitor_interval_reason": "expected quick template change with moderate regression risk",
+  "timeout_at": "2026-03-12T02:22:52+00:00",
+  "retry_count": 0,
+  "max_retries": 2,
+  "recovery_action": "none",
+  "escalation_condition": "retry limit reached or task blocked",
+  "latest_summary": "review passed and evidence bundle prepared; monitor cleared",
+  "cleared_at": "2026-03-12T02:19:52+00:00"
+}

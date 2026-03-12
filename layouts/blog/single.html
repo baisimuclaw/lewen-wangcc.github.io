@@ -1,0 +1,294 @@
+{{ define "main" }}
+<style>
+  .blog-single-shell {
+    max-width: 860px;
+    margin: 0 auto;
+    padding-top: 0.5rem;
+  }
+  .blog-single-article {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: 2.4rem 2.6rem;
+    background: transparent;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
+  }
+  .blog-single-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .blog-single-date {
+    margin-bottom: 0.7rem;
+    font-size: 0.92rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .blog-single-title {
+    margin-bottom: 0.9rem;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    line-height: 1.2;
+    font-weight: 750;
+    letter-spacing: -0.03em;
+  }
+  .blog-single-description {
+    max-width: 46rem;
+    margin-bottom: 0;
+    color: #4b5563;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .blog-single-content {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #1f2937;
+  }
+  .blog-single-content h2,
+  .blog-single-content h3,
+  .blog-single-content h4 {
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+  }
+  .blog-single-content h2 {
+    margin-top: 2.8rem;
+    margin-bottom: 1rem;
+    font-size: clamp(1.55rem, 2.2vw, 1.95rem);
+    font-weight: 780;
+  }
+  .blog-single-content h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.85rem;
+    font-size: clamp(1.2rem, 1.6vw, 1.4rem);
+    font-weight: 720;
+  }
+  .blog-single-content h4 {
+    margin-top: 1.4rem;
+    margin-bottom: 0.7rem;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: #374151;
+  }
+  .blog-single-content p,
+  .blog-single-content ul,
+  .blog-single-content ol,
+  .blog-single-content blockquote {
+    margin-bottom: 1.15rem;
+  }
+  .blog-single-content img {
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  }
+  .blog-single-content :not(pre) > code,
+  .blog-single-content li > code,
+  .blog-single-content p > code,
+  .blog-single-content td > code {
+    display: inline-block;
+    padding: 0.16rem 0.5rem;
+    border-radius: 7px;
+    background: rgba(51, 102, 204, 0.08);
+    border: 1px solid rgba(51, 102, 204, 0.14);
+    color: #254a99;
+    font-size: 0.9em;
+    line-height: 1.55;
+    word-break: break-word;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .blog-single-content .highlight,
+  .blog-single-content > pre,
+  .blog-single-content li > pre,
+  .blog-single-content blockquote > pre {
+    position: relative;
+    margin: 1.45rem 0;
+    padding: 1.1rem 1.15rem;
+    border-radius: 16px;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 12px 28px rgba(15, 23, 42, 0.12);
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+  }
+  .blog-single-content .highlight::before,
+  .blog-single-content > pre::before,
+  .blog-single-content li > pre::before,
+  .blog-single-content blockquote > pre::before {
+    content: attr(data-code-lang);
+    display: block;
+    margin-bottom: 0.8rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(191, 219, 254, 0.78);
+  }
+  .blog-single-content .highlight pre,
+  .blog-single-content pre {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    color: #e5eefb;
+    font-size: 0.94rem;
+    line-height: 1.75;
+    white-space: pre;
+    overflow: visible;
+    tab-size: 2;
+  }
+  .blog-single-content .highlight code,
+  .blog-single-content pre code {
+    display: block;
+    min-width: max-content;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+  .blog-single-content > pre::-webkit-scrollbar,
+  .blog-single-content li > pre::-webkit-scrollbar,
+  .blog-single-content blockquote > pre::-webkit-scrollbar,
+  .blog-single-content .highlight::-webkit-scrollbar {
+    height: 0.55rem;
+  }
+  .blog-single-content > pre::-webkit-scrollbar-thumb,
+  .blog-single-content li > pre::-webkit-scrollbar-thumb,
+  .blog-single-content blockquote > pre::-webkit-scrollbar-thumb,
+  .blog-single-content .highlight::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.38);
+    border-radius: 999px;
+  }
+  .blog-single-content .highlight .line {
+    display: block;
+  }
+  .blog-single-content .highlight .lnt,
+  .blog-single-content .highlight .ln,
+  .blog-single-content .highlight .lntd:first-child {
+    user-select: none;
+    opacity: 0.45;
+  }
+  .blog-single-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+  .blog-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.28rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(51, 102, 204, 0.16);
+    background: rgba(51, 102, 204, 0.05);
+    color: #3156a6;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    text-decoration: none;
+  }
+  .blog-tag:hover {
+    background: rgba(51, 102, 204, 0.1);
+    border-color: rgba(51, 102, 204, 0.24);
+    color: #1d4ed8;
+  }
+  .blog-single-footer {
+    margin-top: 2.25rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .blog-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1rem;
+    border: 1px solid rgba(51, 102, 204, 0.22);
+    border-radius: 999px;
+    color: #3366cc;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .blog-back-link:hover {
+    background: rgba(51, 102, 204, 0.06);
+    border-color: rgba(51, 102, 204, 0.35);
+    color: #1d4ed8;
+  }
+  @media (max-width: 768px) {
+    .blog-single-article {
+      padding: 1.5rem 1.2rem;
+      border-radius: 14px;
+    }
+    .blog-single-content {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .blog-single-content .highlight {
+      margin-left: -0.15rem;
+      margin-right: -0.15rem;
+      padding: 0.9rem 0.9rem;
+      border-radius: 12px;
+    }
+    .blog-single-content .highlight pre,
+    .blog-single-content pre {
+      font-size: 0.88rem;
+    }
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.blog-single-content .highlight, .blog-single-content pre').forEach(function (block) {
+      var code = block.matches('code') ? block : block.querySelector('code');
+      var lang = '';
+      if (code) {
+        lang = code.getAttribute('data-lang') || '';
+        if (!lang && code.className) {
+          var match = code.className.match(/language-([a-zA-Z0-9_+-]+)/);
+          if (match) lang = match[1];
+        }
+      }
+      lang = (lang || 'text').toLowerCase();
+      if (block.classList.contains('highlight')) {
+        block.setAttribute('data-code-lang', lang);
+        var nestedPre = block.querySelector('pre');
+        if (nestedPre) nestedPre.setAttribute('data-code-lang', lang);
+      } else {
+        block.setAttribute('data-code-lang', lang);
+      }
+    });
+  });
+</script>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="blog-single-shell">
+        <article class="blog-single-article">
+          <header class="blog-single-header">
+            <div class="blog-single-date">{{ .Date.Format "Jan 2, 2006" }}</div>
+            <h1 class="blog-single-title">{{ .Title }}</h1>
+            {{ with .Params.description }}<p class="blog-single-description">{{ . }}</p>{{ end }}
+          </header>
+          <div class="article-style blog-single-content">
+            {{ .Content }}
+          </div>
+          {{ with .Params.tags }}
+          <div class="blog-single-tags">
+            {{ range . }}
+              <span class="blog-tag">#{{ . }}</span>
+            {{ end }}
+          </div>
+          {{ end }}
+          <div class="blog-single-footer">
+            <a class="blog-back-link" href="{{ .CurrentSection.RelPermalink }}">
+              <span aria-hidden="true">←</span>
+              <span>{{ if eq .Lang "zh" }}返回博客列表{{ else }}Back to Blog{{ end }}</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
