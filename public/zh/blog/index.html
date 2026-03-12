@@ -41,12 +41,12 @@
   
     
   
-  <meta name="description" content="Academic site of Lewen Wang on computational and theoretical chemistry." />
+  <meta name="description" content="收集关于科研、工具和博士生活的简短文章。" />
 
   
-    <link rel="alternate" hreflang="en" href="http://47.242.193.39:61313/404.html" />
+    <link rel="alternate" hreflang="en" href="http://47.242.193.39:61313/blog/" />
   
-  <link rel="alternate" hreflang="zh-Hans" href="http://47.242.193.39:61313/zh/404.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="http://47.242.193.39:61313/zh/blog/" />
 
   
   
@@ -158,12 +158,14 @@
 
   
   
+    <link rel="alternate" href="/zh/blog/index.xml" type="application/rss+xml" title="王乐文" />
+  
 
   
   <link rel="icon" type="image/png" href="/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_32x32_fill_lanczos_center_3.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_180x180_fill_lanczos_center_3.png" />
 
-  <link rel="canonical" href="http://47.242.193.39:61313/zh/404.html" />
+  <link rel="canonical" href="http://47.242.193.39:61313/zh/blog/" />
 
   
   
@@ -186,11 +188,13 @@
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="王乐文" />
-  <meta property="og:url" content="http://47.242.193.39:61313/zh/404.html" />
-  <meta property="og:title" content="404 Page not found | 王乐文" />
-  <meta property="og:description" content="Academic site of Lewen Wang on computational and theoretical chemistry." /><meta property="og:image" content="http://47.242.193.39:61313/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_512x512_fill_lanczos_center_3.png" />
+  <meta property="og:url" content="http://47.242.193.39:61313/zh/blog/" />
+  <meta property="og:title" content="博客 | 王乐文" />
+  <meta property="og:description" content="收集关于科研、工具和博士生活的简短文章。" /><meta property="og:image" content="http://47.242.193.39:61313/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_512x512_fill_lanczos_center_3.png" />
     <meta property="twitter:image" content="http://47.242.193.39:61313/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="zh-Hans" />
   
+    
+      <meta property="og:updated_time" content="2026-03-12T00:00:00&#43;08:00" />
     
   
 
@@ -199,7 +203,7 @@
 
 
 
-  <title>404 Page not found | 王乐文</title>
+  <title>博客 | 王乐文</title>
 
   
   
@@ -881,7 +885,7 @@
       
       <li class="nav-item">
         <a
-          class="nav-link "
+          class="nav-link active"
           
           href="/zh/blog/"
         >博客</a
@@ -957,7 +961,7 @@
       
         <li class="flex flex-col">
           <a
-            href="http://47.242.193.39:61313/404.html"
+            href="http://47.242.193.39:61313/blog/"
             class="relative cursor-pointer text-gray-800 dark:text-gray-100 hover:bg-primary-50 hover:text-primary-600 hover:dark:bg-primary-500/10 hover:dark:text-primary-200 whitespace-nowrap py-1.5 transition-colors ltr:pl-3 ltr:pr-9 rtl:pr-3 rtl:pl-9"
           >English</a>
         </li>
@@ -979,35 +983,218 @@
       
     </div>
     <div class="page-body  my-10">
-      <div class="flex flex-col justify-center">
-  <article class="container mx-auto prose prose-slate lg:prose-xl dark:prose-invert">
-    <h1 class="lg:text-6xl">找不到页面</h1>
+      
+<style>
+  .blog-list-shell {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem 0 0.5rem;
+  }
+  .blog-list-header {
+    margin-bottom: 2.75rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .blog-list-header h1 {
+    margin-bottom: 0.75rem;
+    font-size: clamp(2rem, 3vw, 2.9rem);
+    line-height: 1.15;
+    font-weight: 760;
+    letter-spacing: -0.03em;
+  }
+  .blog-list-header p {
+    max-width: 42rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+  .blog-list-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+  }
+  .blog-list-card {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    padding: 1.5rem 1.6rem;
+    background: transparent;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .blog-list-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+    border-color: rgba(51, 102, 204, 0.22);
+  }
+  .blog-list-date {
+    margin-bottom: 0.55rem;
+    font-size: 0.92rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .blog-list-title {
+    margin-bottom: 0.7rem;
+    font-size: 1.45rem;
+    line-height: 1.35;
+    font-weight: 700;
+  }
+  .blog-list-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .blog-list-title a:hover {
+    color: #3366cc;
+  }
+  .blog-list-summary {
+    margin-bottom: 0.95rem;
+    color: #4b5563;
+    line-height: 1.8;
+  }
+  .blog-list-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .blog-list-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.45rem;
+    margin-left: auto;
+  }
+  .blog-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.22rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid rgba(51, 102, 204, 0.16);
+    background: rgba(51, 102, 204, 0.05);
+    color: #3156a6;
+    font-size: 0.84rem;
+    line-height: 1.4;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .blog-tag:hover {
+    background: rgba(51, 102, 204, 0.1);
+    border-color: rgba(51, 102, 204, 0.24);
+    color: #1d4ed8;
+  }
+  .blog-list-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #3366cc;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .blog-list-link:hover {
+    color: #1d4ed8;
+  }
+  .blog-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .blog-pagination-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.2rem;
+    height: 2.2rem;
+    padding: 0 0.7rem;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    color: #374151;
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: all 0.2s ease;
+  }
+  .blog-pagination-item:hover {
+    border-color: rgba(51, 102, 204, 0.28);
+    color: #1d4ed8;
+    background: rgba(51, 102, 204, 0.07);
+  }
+  .blog-pagination-item.is-current {
+    border-color: rgba(51, 102, 204, 0.32);
+    background: rgba(51, 102, 204, 0.12);
+    color: #1f3f83;
+    font-weight: 650;
+    pointer-events: none;
+  }
+  .blog-pagination-item.is-disabled {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+  @media (max-width: 768px) {
+    .blog-list-card {
+      padding: 1.25rem;
+      border-radius: 12px;
+    }
+    .blog-list-title {
+      font-size: 1.25rem;
+    }
+    .blog-list-meta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .blog-list-tags {
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  }
+</style>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="blog-list-shell">
+        <header class="blog-list-header">
+          <h1>博客</h1>
+          <p class="text-muted mb-0">记录科研、工具使用与学习生活的短文。</p>
+        </header>
+        
+        <div class="blog-list-group">
+          
+          <article class="blog-list-card">
+            <div class="blog-list-date">Mar 12, 2026</div>
+            <h2 class="blog-list-title"><a href="/zh/blog/xray-iptables-notes/">Xray &#43; iptables 安装与配置笔记</a></h2>
+            <p class="blog-list-summary">更贴近原始笔记的中文整理版，补回完整章节、小标题、配置模板与 iptables 脚本示例。</p>
+            <div class="blog-list-meta">
+              <a class="blog-list-link" href="/zh/blog/xray-iptables-notes/">
+                阅读全文
+                <span aria-hidden="true">→</span>
+              </a>
+              
+              <div class="blog-list-tags">
+                
+                  <span class="blog-tag">#Xray</span>
+                
+                  <span class="blog-tag">#iptables</span>
+                
+                  <span class="blog-tag">#Linux</span>
+                
+                  <span class="blog-tag">#代理</span>
+                
+                  <span class="blog-tag">#网络</span>
+                
+              </div>
+              
+            </div>
+          </article>
+          
+        </div>
 
-    
-
-    <p>也许你在找？</p>
-
-    
-    
-    
-    <h2>最新</h2>
-    <ul>
-      
-      <li><a href="/zh/blog/xray-iptables-notes/">Xray &#43; iptables 安装与配置笔记</a></li>
-      
-      <li><a href="/zh/blog/">博客</a></li>
-      
-      <li><a href="/zh/experience/">经历</a></li>
-      
-      <li><a href="/zh/gallery/">画廊</a></li>
-      
-      <li><a href="/zh/publication/">发表论文</a></li>
-      
-    </ul>
-    
-
-  </article>
+        
+      </div>
+    </div>
+  </div>
 </div>
+
     </div>
     <div class="page-footer">
       <footer class="container mx-auto flex flex-col justify-items-center text-sm leading-6 mt-24 mb-4 text-slate-700 dark:text-slate-200">
@@ -1036,7 +1223,7 @@
   </div>
   <div class="font-bold">中文 (简体)</div>
   
-  <div><a href="http://47.242.193.39:61313/404.html">English</a></div>
+  <div><a href="http://47.242.193.39:61313/blog/">English</a></div>
   
 </div>
 

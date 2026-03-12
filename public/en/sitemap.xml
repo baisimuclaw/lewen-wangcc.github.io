@@ -2,59 +2,87 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1314/</loc>
+    <loc>http://47.242.193.39:61313/blog/xray-iptables-notes/</loc>
+    <lastmod>2026-03-12T04:50:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-Hans"
+                href="http://47.242.193.39:61313/zh/blog/xray-iptables-notes/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="http://47.242.193.39:61313/blog/xray-iptables-notes/"
+                />
+  </url><url>
+    <loc>http://47.242.193.39:61313/blog/</loc>
+    <lastmod>2026-03-12T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-Hans"
+                href="http://47.242.193.39:61313/zh/blog/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="http://47.242.193.39:61313/blog/"
+                />
+  </url><url>
+    <loc>http://47.242.193.39:61313/</loc>
     <lastmod>2024-12-30T10:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="http://localhost:1314/zh/"
+                href="http://47.242.193.39:61313/zh/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="http://localhost:1314/"
+                href="http://47.242.193.39:61313/"
                 />
   </url><url>
-    <loc>http://localhost:1314/experience/</loc>
+    <loc>http://47.242.193.39:61313/experience/</loc>
     <lastmod>2024-12-30T10:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="http://localhost:1314/zh/experience/"
+                href="http://47.242.193.39:61313/zh/experience/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="http://localhost:1314/experience/"
+                href="http://47.242.193.39:61313/experience/"
                 />
   </url><url>
-    <loc>http://localhost:1314/gallery/</loc>
+    <loc>http://47.242.193.39:61313/gallery/</loc>
     <lastmod>2024-12-30T10:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="http://localhost:1314/zh/gallery/"
+                href="http://47.242.193.39:61313/zh/gallery/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="http://localhost:1314/gallery/"
+                href="http://47.242.193.39:61313/gallery/"
                 />
   </url><url>
-    <loc>http://localhost:1314/publication/</loc>
+    <loc>http://47.242.193.39:61313/publication/</loc>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="http://localhost:1314/zh/publication/"
+                href="http://47.242.193.39:61313/zh/publication/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="http://localhost:1314/publication/"
+                href="http://47.242.193.39:61313/publication/"
                 />
   </url>
 </urlset>
