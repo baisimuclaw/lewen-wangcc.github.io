@@ -1,3 +1,3 @@
 User-agent: *
 
-Sitemap: http://47.242.193.39:61313/sitemap.xml
+Sitemap: https://lewen-wangcc.github.io/sitemap.xml
