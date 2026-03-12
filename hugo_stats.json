@@ -309,8 +309,7 @@
       "whitespace-nowrap",
       "xl:space-x-8",
       "z-20",
-      "z-30",
-      "”appendix-back-btn”"
+      "z-30"
     ],
     "ids": [
       "1-what-is-this-architecture-doing",
@@ -339,8 +338,6 @@
       "3-结构图",
       "4-how-this-note-is-organized",
       "4-使用说明",
-      "5-xray-installation-and-configuration-flow",
-      "5-xray-安装与配置流程",
       "51-what-is-xray-doing-here",
       "51-xray-是干嘛的",
       "52-install-xray",
@@ -349,8 +346,6 @@
       "53-查看是否安装成功",
       "54-confirm-the-config-file-location",
       "54-确认配置文件位置",
-      "55-edit-the-configuration-with-nano",
-      "55-使用-nano-编辑配置文件",
       "551-nano-保存与退出方法",
       "551-save-and-exit-in-nano",
       "552-reference-docs",
@@ -412,9 +407,7 @@
       "93-health-check-timer-commands-run-after-enabling-the-timer",
       "93-健康检查-timer-常用命令启用-timer-后执行",
       "appendix-a",
-      "appendix-a-single-exit-configuration-template",
       "appendix-b",
-      "appendix-b-dual-exit-configuration-template",
       "appendix-c-consolidated-iptables-bash-command-area",
       "c1-forced-transparent-proxy-apply-script",
       "c1-强制透明代理apply-脚本",
@@ -438,6 +431,7 @@
       "search",
       "search_toggle",
       "section-5",
+      "section-55",
       "section-feature_publication",
       "section-markdown",
       "section-resume-biography",
@@ -447,9 +441,6 @@
       "site-header",
       "sun",
       "top",
-      "”section-55”",
-      "附录-a单出口配置模板",
-      "附录-b双出口配置模板",
       "附录-ciptables-bash-命令集中区"
     ]
   }

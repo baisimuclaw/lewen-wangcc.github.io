@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog | Lewen Wang</title>
-    <link>https://lewen-wangcc.github.io/blog/</link>
-      <atom:link href="https://lewen-wangcc.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:64630/blog/</link>
+      <atom:link href="http://localhost:64630/blog/index.xml" rel="self" type="application/rss+xml" />
     <description>Blog</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Thu, 12 Mar 2026 00:00:00 +0800</lastBuildDate>
     <image>
-      <url>https://lewen-wangcc.github.io/media/icon_hu_645fa481986063ef.png</url>
+      <url>http://localhost:64630/media/icon_hu_645fa481986063ef.png</url>
       <title>Blog</title>
-      <link>https://lewen-wangcc.github.io/blog/</link>
+      <link>http://localhost:64630/blog/</link>
     </image>
     
     <item>
       <title>Xray &#43; iptables installation and configuration notes</title>
-      <link>https://lewen-wangcc.github.io/blog/xray-iptables-notes/</link>
+      <link>http://localhost:64630/blog/xray-iptables-notes/</link>
       <pubDate>Thu, 12 Mar 2026 04:50:00 +0800</pubDate>
-      <guid>https://lewen-wangcc.github.io/blog/xray-iptables-notes/</guid>
+      <guid>http://localhost:64630/blog/xray-iptables-notes/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;This is a &lt;strong&gt;shareable&lt;/strong&gt; general-purpose note. It does not include any real nodes, UUIDs, public keys, passwords, or other private information.&lt;/p&gt;
 &lt;p&gt;All commands, scripts, and configuration examples are given in code blocks so they can be copied directly into Typora or any other Markdown reader.&lt;/p&gt;
@@ -80,7 +80,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 
 &lt;figure  &gt;
   &lt;div class=&#34;flex justify-center	&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://lewen-wangcc.github.io/media/blog/xray-iptables-architecture.jpg&#34; alt=&#34;Xray &amp;#43; iptables architecture&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;http://localhost:64630/media/blog/xray-iptables-architecture.jpg&#34; alt=&#34;Xray &amp;#43; iptables architecture&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;The diagram above gives a quick visual view of how the components relate to each other.&lt;/p&gt;
@@ -117,8 +117,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/li&gt;
 &lt;li&gt;Then configure &lt;code&gt;systemd&lt;/code&gt; startup.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;a id=&#34;section-5&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;5-xray-installation-and-configuration-flow&#34;&gt;5. Xray installation and configuration flow&lt;/h2&gt;
+&lt;h2 id=&#34;section-5&#34;&gt;5. Xray installation and configuration flow&lt;/h2&gt;
 &lt;h3 id=&#34;51-what-is-xray-doing-here&#34;&gt;5.1 What is Xray doing here?&lt;/h3&gt;
 &lt;p&gt;In this architecture, Xray is responsible for:&lt;/p&gt;
 &lt;ul&gt;
@@ -146,8 +145,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Expected example output:&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-rw-r--r-- 1 root root 1234 ... /usr/local/etc/xray/config.json
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the file does not exist yet, you can create it manually in the next step.&lt;/p&gt;
-&lt;p&gt;&lt;a id=”section-55”&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;55-edit-the-configuration-with-nano&#34;&gt;5.5 Edit the configuration with nano&lt;/h3&gt;
+&lt;h3 id=&#34;section-55&#34;&gt;5.5 Edit the configuration with nano&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Edit the Xray configuration file with nano&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /usr/local/etc/xray/config.json
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The templates here are the base skeletons for generating &lt;code&gt;config.json&lt;/code&gt;. They determine where different traffic types eventually go.&lt;/p&gt;
@@ -156,13 +154,13 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;li&gt;OpenAI / ChatGPT / Codex / GPT related traffic goes through &lt;strong&gt;node 1&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;all other traffic goes &lt;strong&gt;direct&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;use: &lt;a href=”#appendix-a” class=”appendix-back-btn”&gt;↓ Appendix A: single-exit configuration template&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;use: &lt;a href=&#34;#appendix-a&#34; class=&#34;appendix-back-btn&#34;&gt;↓ Appendix A: single-exit configuration template&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;If your requirement is:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;OpenAI / ChatGPT / Codex / GPT related traffic goes through &lt;strong&gt;node 1&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;all other traffic goes through &lt;strong&gt;node 2&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;use: &lt;a href=”#appendix-b” class=”appendix-back-btn”&gt;↓ Appendix B: dual-exit configuration template&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;use: &lt;a href=&#34;#appendix-b&#34; class=&#34;appendix-back-btn&#34;&gt;↓ Appendix B: dual-exit configuration template&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Practical note: if you do not want to fill every field by hand, you can give “one or more proxy node links + the template you want” to a commercial model to generate a first draft of &lt;code&gt;config.json&lt;/code&gt;, and then validate it yourself locally. To reduce sensitive-data trace risk, temporary chats or one-off sessions are safer for that step.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;Paste the full template you chose, then replace the placeholders with your own values.&lt;/p&gt;
@@ -697,8 +695,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/home/claw1/.openclaw/workspace/tmp/xray-config/xray-single-exit-template.json
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/home/claw1/.openclaw/workspace/tmp/xray-config/xray-dual-exit-template.json
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/home/claw1/.openclaw/workspace/tmp/xray-config/Xray-iptables-notes.md
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a id=&#34;appendix-a&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;appendix-a-single-exit-configuration-template&#34;&gt;Appendix A: single-exit configuration template&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;appendix-a&#34;&gt;Appendix A: single-exit configuration template&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;#section-55&#34; class=&#34;appendix-back-btn&#34;&gt;↑ Back to §5.5 Edit the configuration with nano&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;log&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
@@ -835,8 +832,7 @@ So Xray decides &lt;em&gt;which path to use&lt;/em&gt;, while iptables decides &
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a id=&#34;appendix-b&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;appendix-b-dual-exit-configuration-template&#34;&gt;Appendix B: dual-exit configuration template&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;appendix-b&#34;&gt;Appendix B: dual-exit configuration template&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;#section-55&#34; class=&#34;appendix-back-btn&#34;&gt;↑ Back to §5.5 Edit the configuration with nano&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;log&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;

@@ -2,87 +2,87 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://lewen-wangcc.github.io/blog/xray-iptables-notes/</loc>
+    <loc>http://localhost:64630/blog/xray-iptables-notes/</loc>
     <lastmod>2026-03-12T04:50:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="https://lewen-wangcc.github.io/zh/blog/xray-iptables-notes/"
+                href="http://localhost:64630/zh/blog/xray-iptables-notes/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://lewen-wangcc.github.io/blog/xray-iptables-notes/"
+                href="http://localhost:64630/blog/xray-iptables-notes/"
                 />
   </url><url>
-    <loc>https://lewen-wangcc.github.io/blog/</loc>
+    <loc>http://localhost:64630/blog/</loc>
     <lastmod>2026-03-12T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="https://lewen-wangcc.github.io/zh/blog/"
+                href="http://localhost:64630/zh/blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://lewen-wangcc.github.io/blog/"
+                href="http://localhost:64630/blog/"
                 />
   </url><url>
-    <loc>https://lewen-wangcc.github.io/</loc>
+    <loc>http://localhost:64630/</loc>
     <lastmod>2024-12-30T10:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="https://lewen-wangcc.github.io/zh/"
+                href="http://localhost:64630/zh/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://lewen-wangcc.github.io/"
+                href="http://localhost:64630/"
                 />
   </url><url>
-    <loc>https://lewen-wangcc.github.io/experience/</loc>
+    <loc>http://localhost:64630/experience/</loc>
     <lastmod>2024-12-30T10:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="https://lewen-wangcc.github.io/zh/experience/"
+                href="http://localhost:64630/zh/experience/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://lewen-wangcc.github.io/experience/"
+                href="http://localhost:64630/experience/"
                 />
   </url><url>
-    <loc>https://lewen-wangcc.github.io/gallery/</loc>
+    <loc>http://localhost:64630/gallery/</loc>
     <lastmod>2024-12-30T10:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="https://lewen-wangcc.github.io/zh/gallery/"
+                href="http://localhost:64630/zh/gallery/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://lewen-wangcc.github.io/gallery/"
+                href="http://localhost:64630/gallery/"
                 />
   </url><url>
-    <loc>https://lewen-wangcc.github.io/publication/</loc>
+    <loc>http://localhost:64630/publication/</loc>
     <changefreq>weekly</changefreq>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-Hans"
-                href="https://lewen-wangcc.github.io/zh/publication/"
+                href="http://localhost:64630/zh/publication/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://lewen-wangcc.github.io/publication/"
+                href="http://localhost:64630/publication/"
                 />
   </url>
 </urlset>

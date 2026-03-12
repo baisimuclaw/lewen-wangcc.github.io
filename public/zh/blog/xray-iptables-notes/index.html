@@ -3,7 +3,7 @@
 <!-- Last Published: 2026年3月12日 --><html lang="zh-Hans" dir="ltr"
       data-wc-theme-default="system">
   
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=64630&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,9 +44,9 @@
   <meta name="description" content="记录 Xray 安装、config.json 配置与 iptables 透明代理的完整步骤——涵盖强制代理模式、健康检查回退机制与 systemd 开机自启配置。" />
 
   
-    <link rel="alternate" hreflang="en" href="https://lewen-wangcc.github.io/blog/xray-iptables-notes/" />
+    <link rel="alternate" hreflang="en" href="http://localhost:64630/blog/xray-iptables-notes/" />
   
-  <link rel="alternate" hreflang="zh-Hans" href="https://lewen-wangcc.github.io/zh/blog/xray-iptables-notes/" />
+  <link rel="alternate" hreflang="zh-Hans" href="http://localhost:64630/zh/blog/xray-iptables-notes/" />
 
   
   
@@ -132,45 +132,6 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5FT9F48DR6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag() {
-      dataLayer.push(arguments);
-  }
-
-  function trackOutboundLink(url, target) {
-    gtag('event', 'click', {
-         'event_category': 'outbound',
-         'event_label': url,
-         'transport_type': 'beacon',
-         'event_callback': function () {
-           if (target !== '_blank') {
-             document.location = url;
-           }
-         }
-    });
-    console.debug("Outbound link clicked: " + url);
-  }
-
-  function onClickCallback(event) {
-    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
-      return;
-    }
-    trackOutboundLink(event.target, event.target.getAttribute('target'));  
-  }
-
-  gtag('js', new Date());
-  gtag('config', 'G-5FT9F48DR6', {});
-  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
-
-  
-  document.addEventListener('click', onClickCallback, false);
-</script>
-
-
-
 
 
 
@@ -202,7 +163,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu_5cac115d14ed3d49.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu_e7f327b39c12e7ca.png" />
 
-  <link rel="canonical" href="https://lewen-wangcc.github.io/zh/blog/xray-iptables-notes/" />
+  <link rel="canonical" href="http://localhost:64630/zh/blog/xray-iptables-notes/" />
 
   
   
@@ -225,10 +186,10 @@
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="王乐文" />
-  <meta property="og:url" content="https://lewen-wangcc.github.io/zh/blog/xray-iptables-notes/" />
+  <meta property="og:url" content="http://localhost:64630/zh/blog/xray-iptables-notes/" />
   <meta property="og:title" content="Xray &#43; iptables 安装与配置笔记 | 王乐文" />
-  <meta property="og:description" content="记录 Xray 安装、config.json 配置与 iptables 透明代理的完整步骤——涵盖强制代理模式、健康检查回退机制与 systemd 开机自启配置。" /><meta property="og:image" content="https://lewen-wangcc.github.io/media/icon_hu_645fa481986063ef.png" />
-    <meta property="twitter:image" content="https://lewen-wangcc.github.io/media/icon_hu_645fa481986063ef.png" /><meta property="og:locale" content="zh-Hans" />
+  <meta property="og:description" content="记录 Xray 安装、config.json 配置与 iptables 透明代理的完整步骤——涵盖强制代理模式、健康检查回退机制与 systemd 开机自启配置。" /><meta property="og:image" content="http://localhost:64630/media/icon_hu_645fa481986063ef.png" />
+    <meta property="twitter:image" content="http://localhost:64630/media/icon_hu_645fa481986063ef.png" /><meta property="og:locale" content="zh-Hans" />
   
     
       <meta
@@ -260,7 +221,7 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://lewen-wangcc.github.io/zh/blog/xray-iptables-notes/"
+    "@id": "http://localhost:64630/zh/blog/xray-iptables-notes/"
   },
   "headline": "Xray + iptables 安装与配置笔记",
   
@@ -277,7 +238,7 @@
     "name": "Hong Kong Baptist University",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://lewen-wangcc.github.io/media/icon_hu_1df060215326dd50.png"
+      "url": "http://localhost:64630/media/icon_hu_1df060215326dd50.png"
     }
   },
   "description": "记录 Xray 安装、config.json 配置与 iptables 透明代理的完整步骤——涵盖强制代理模式、健康检查回退机制与 systemd 开机自启配置。"
@@ -847,8 +808,8 @@
   
   <script
     defer
-    src="/js/hugo-blox-zh.min.edad2a20315bced9792ec0d846aaf4ab2d7efe63957cb49983442d40c24349c5.js"
-    integrity="sha256-7a0qIDFbztl5LsDYRqr0qy1&#43;/mOVfLSZg0QtQMJDScU="
+    src="/js/hugo-blox-zh.min.js"
+    integrity=""
   ></script>
 
   
@@ -1047,7 +1008,7 @@
       
         <li class="flex flex-col">
           <a
-            href="https://lewen-wangcc.github.io/blog/xray-iptables-notes/"
+            href="http://localhost:64630/blog/xray-iptables-notes/"
             class="relative cursor-pointer text-gray-800 dark:text-gray-100 hover:bg-primary-50 hover:text-primary-600 hover:dark:bg-primary-500/10 hover:dark:text-primary-200 whitespace-nowrap py-1.5 transition-colors ltr:pl-3 ltr:pr-9 rtl:pr-3 rtl:pl-9"
           >English</a>
         </li>
@@ -1402,9 +1363,6 @@
   .blog-single-content h2[id],
   .blog-single-content h3[id],
   .blog-single-content h4[id] {
-    scroll-margin-top: 70px;
-  }
-  .blog-single-content a[id]:not([href]) {
     scroll-margin-top: 70px;
   }
   .blog-single-content .appendix-back-btn {
@@ -1856,8 +1814,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 </li>
 <li>最后再做 <code>systemd</code> 开机自启</li>
 </ol>
-<p><a id="section-5"></a></p>
-<h2 id="5-xray-安装与配置流程">5. Xray 安装与配置流程</h2>
+<h2 id="section-5">5. Xray 安装与配置流程</h2>
 <h3 id="51-xray-是干嘛的">5.1 Xray 是干嘛的？</h3>
 <p>在这套架构里，Xray 负责：</p>
 <ul>
@@ -1885,8 +1842,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 </span></span></code></pre></div><p><strong>预期输出示例：</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">-rw-r--r-- 1 root root 1234 ... /usr/local/etc/xray/config.json
 </span></span></code></pre></div><p>如果文件不存在，也没关系，下一步可以手动创建。</p>
-<p><a id=”section-55”></a></p>
-<h3 id="55-使用-nano-编辑配置文件">5.5 使用 nano 编辑配置文件</h3>
+<h3 id="section-55">5.5 使用 nano 编辑配置文件</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 用 nano 编辑 Xray 配置文件</span>
 </span></span><span class="line"><span class="cl">sudo nano /usr/local/etc/xray/config.json
 </span></span></code></pre></div><p>这里的”模板”是用于生成 <code>config.json</code> 的基础骨架，决定不同流量最终走哪条出口。</p>
@@ -1895,13 +1851,13 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 <li>OpenAI / ChatGPT / Codex / GPT 相关流量走<strong>节点 1</strong></li>
 <li>其他流量<strong>直连</strong></li>
 </ul>
-<p>那么请使用：<a href=”#appendix-a” class=”appendix-back-btn”>↓ 附录 A：单出口配置模板</a></p>
+<p>那么请使用：<a href="#appendix-a" class="appendix-back-btn">↓ 附录 A：单出口配置模板</a></p>
 <p>如果你的需求是：</p>
 <ul>
 <li>OpenAI / ChatGPT / Codex / GPT 相关流量走<strong>节点 1</strong></li>
 <li>其他流量走<strong>节点 2</strong></li>
 </ul>
-<p>那么请使用：<a href=”#appendix-b” class=”appendix-back-btn”>↓ 附录 B：双出口配置模板</a></p>
+<p>那么请使用：<a href="#appendix-b" class="appendix-back-btn">↓ 附录 B：双出口配置模板</a></p>
 <blockquote>
 <p>实用提醒：如果你不想手工逐项填配置，可以把”代理节点链接（单个或多个）+ 你要使用的模板”发给商用模型，让它先生成一份可用 <code>config.json</code> 初稿，再回到本机自行核对与测试。为了降低敏感信息留痕风险，建议优先使用<strong>临时聊天</strong>或一次性会话来处理节点内容。</p></blockquote>
 <p>然后把你选好的附录模板内容完整复制进去，并把占位符替换成你自己的参数。</p>
@@ -2438,8 +2394,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">/home/claw1/.openclaw/workspace/tmp/xray-config/xray-single-exit-template.json
 </span></span><span class="line"><span class="cl">/home/claw1/.openclaw/workspace/tmp/xray-config/xray-dual-exit-template.json
 </span></span><span class="line"><span class="cl">/home/claw1/.openclaw/workspace/tmp/xray-config/Xray-iptables-notes.md
-</span></span></code></pre></div><p><a id="appendix-a"></a></p>
-<h2 id="附录-a单出口配置模板">附录 A：单出口配置模板</h2>
+</span></span></code></pre></div><h2 id="appendix-a">附录 A：单出口配置模板</h2>
 <p><a href="#section-55" class="appendix-back-btn">↑ 返回 §5.5 使用 nano 编辑配置文件</a></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;log&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -2576,8 +2531,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
 </span></span><span class="line"><span class="cl">    <span class="p">]</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p><a id="appendix-b"></a></p>
-<h2 id="附录-b双出口配置模板">附录 B：双出口配置模板</h2>
+</span></span></code></pre></div><h2 id="appendix-b">附录 B：双出口配置模板</h2>
 <p><a href="#section-55" class="appendix-back-btn">↑ 返回 §5.5 使用 nano 编辑配置文件</a></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;log&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -2914,7 +2868,7 @@ OpenAI / ChatGPT / Codex 相关流量走节点 1；其他普通流量走节点 2
   </div>
   <div class="font-bold">中文 (简体)</div>
   
-  <div><a href="https://lewen-wangcc.github.io/blog/xray-iptables-notes/">English</a></div>
+  <div><a href="http://localhost:64630/blog/xray-iptables-notes/">English</a></div>
   
 </div>
 

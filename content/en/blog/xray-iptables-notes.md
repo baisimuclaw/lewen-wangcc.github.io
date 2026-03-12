@@ -96,9 +96,7 @@ If you only want the main path, do it in this order:
    - or health check with automatic fallback.
 5. Then configure `systemd` startup.
 
-<a id="section-5"></a>
-
-## 5. Xray installation and configuration flow
+## 5. Xray installation and configuration flow {#section-5}
 
 ### 5.1 What is Xray doing here?
 
@@ -155,9 +153,7 @@ ls -l /usr/local/etc/xray/config.json
 
 If the file does not exist yet, you can create it manually in the next step.
 
-<a id=”section-55”></a>
-
-### 5.5 Edit the configuration with nano
+### 5.5 Edit the configuration with nano {#section-55}
 
 ```bash
 # Edit the Xray configuration file with nano
@@ -171,14 +167,14 @@ If your requirement is:
 - OpenAI / ChatGPT / Codex / GPT related traffic goes through **node 1**
 - all other traffic goes **direct**
 
-use: <a href=”#appendix-a” class=”appendix-back-btn”>↓ Appendix A: single-exit configuration template</a>
+use: <a href="#appendix-a" class="appendix-back-btn">↓ Appendix A: single-exit configuration template</a>
 
 If your requirement is:
 
 - OpenAI / ChatGPT / Codex / GPT related traffic goes through **node 1**
 - all other traffic goes through **node 2**
 
-use: <a href=”#appendix-b” class=”appendix-back-btn”>↓ Appendix B: dual-exit configuration template</a>
+use: <a href="#appendix-b" class="appendix-back-btn">↓ Appendix B: dual-exit configuration template</a>
 
 > Practical note: if you do not want to fill every field by hand, you can give “one or more proxy node links + the template you want” to a commercial model to generate a first draft of `config.json`, and then validate it yourself locally. To reduce sensitive-data trace risk, temporary chats or one-off sessions are safer for that step.
 
@@ -982,9 +978,7 @@ As absolute paths:
 /home/claw1/.openclaw/workspace/tmp/xray-config/Xray-iptables-notes.md
 ```
 
-<a id="appendix-a"></a>
-
-## Appendix A: single-exit configuration template
+## Appendix A: single-exit configuration template {#appendix-a}
 
 <a href="#section-55" class="appendix-back-btn">↑ Back to §5.5 Edit the configuration with nano</a>
 
@@ -1126,9 +1120,7 @@ As absolute paths:
 }
 ```
 
-<a id="appendix-b"></a>
-
-## Appendix B: dual-exit configuration template
+## Appendix B: dual-exit configuration template {#appendix-b}
 
 <a href="#section-55" class="appendix-back-btn">↑ Back to §5.5 Edit the configuration with nano</a>
 
